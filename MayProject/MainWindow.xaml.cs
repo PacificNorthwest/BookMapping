@@ -24,9 +24,6 @@ namespace MayProject
         public MainWindow()
         {
             InitializeComponent();
-
-            Book book = new Book("Harry Potter");
-            XmlManager.Save(book);
         }
     }
 }
