@@ -7,21 +7,31 @@ using System.Threading.Tasks;
 namespace MayProject.Books
 {
     [Serializable]
-    class Book
+    public class Book : AbstractIllustratableElement
     {
-        public string BookName { get; set; }
-        public List<Character> Characters { get; set; }
-        public List<Location> Locations { get; set; }
-        public List<Note> Notes { get; set; }
-        public List<Chapter> Chapters { get; set; }
+        public List<Character> Characters { get; set; } = new List<Character>();
+        public List<Location> Locations { get; set; } = new List<Location>();
+        public List<Note> Notes { get; set; } = new List<Note>();
+        public List<Chapter> Chapters { get; set; } = new List<Chapter>();
 
-        public Book(string bookName)
+        public Book(string title)
         {
-            BookName = bookName;
-            Characters = new List<Character>();
-            Locations = new List<Location>();
-            Notes = new List<Note>();
-            Chapters = new List<Chapter>();
+            Title = title;
+        }
+
+        public Book()
+        {
+            Title = "No title";
+        }
+
+        public override void AddIllustration()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RemoveIllustration()
+        {
+            throw new NotImplementedException();
         }
 
     }

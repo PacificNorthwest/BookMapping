@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace MayProject.Books
 {
-    class Chapter
+    [Serializable]
+    public class Chapter : AbstractBookElement
     {
+        public string Annotation { get; set; }
+        public string Text { get; set; }
+
+        public Chapter(string title)
+        {
+            Title = title;
+        }
+
+        public Chapter() { }
     }
 }

@@ -6,7 +6,30 @@ using System.Threading.Tasks;
 
 namespace MayProject.Books
 {
-    class Location
+    [Serializable]
+    public class Location : AbstractIllustratableElement
     {
+        public string Description { get; set; }
+        public List<Character> Characters { get; set; } = new List<Character>();
+
+        public Location(string title)
+        {
+            Title = title;
+        }
+
+        public Location()
+        {
+            Title = "No title";
+        }
+
+        public override void AddIllustration()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RemoveIllustration()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

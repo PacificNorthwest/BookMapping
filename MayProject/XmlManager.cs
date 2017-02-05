@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
-using MayProject.Books;
 
 namespace MayProject
 {
@@ -20,12 +19,12 @@ namespace MayProject
             }
         }
 
-        public static Book Load()
+        public static object Load(Type type)
         {
-            XmlSerializer xml = new XmlSerializer(typeof(Book));
+            XmlSerializer xml = new XmlSerializer(type);
             using (FileStream file = new FileStream("data.xml", FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                return xml.Deserialize(file) as Book ;
+                return xml.Deserialize(file);
             }
         }
     }
