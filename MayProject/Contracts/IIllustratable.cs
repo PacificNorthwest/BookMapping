@@ -8,7 +8,7 @@ namespace MayProject.Contracts
 {
     interface IIllustratable
     {
-        void AddIllustration();
+        void AddIllustration(string path);
         void RemoveIllustration();
     }
 }

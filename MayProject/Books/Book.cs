@@ -17,14 +17,13 @@ namespace MayProject.Books
         public Book(string title)
         {
             Title = title;
+            Illustrations = new List<System.Drawing.Bitmap>();
         }
 
-        public Book()
-        {
-            Title = "No title";
-        }
+        public Book() : this("No title")
+        { }
 
-        public override void AddIllustration()
+        public override void AddIllustration(string path)
         {
             throw new NotImplementedException();
         }

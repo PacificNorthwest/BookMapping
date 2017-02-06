@@ -17,6 +17,7 @@ namespace MayProject.Books
             Title = title;
         }
 
-        public Chapter() { }
+        public Chapter() : this("No title")
+        { }
     }
 }

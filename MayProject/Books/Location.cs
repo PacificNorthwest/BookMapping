@@ -15,19 +15,28 @@ namespace MayProject.Books
         public Location(string title)
         {
             Title = title;
+            Illustrations = new List<System.Drawing.Bitmap>();
         }
 
-        public Location()
-        {
-            Title = "No title";
-        }
+        public Location() : this("No title")
+        { }
 
-        public override void AddIllustration()
+        public override void AddIllustration(string path)
         {
             throw new NotImplementedException();
         }
 
         public override void RemoveIllustration()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCharacter(Character character)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveCharacter(Character character)
         {
             throw new NotImplementedException();
         }

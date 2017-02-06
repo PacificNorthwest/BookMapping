@@ -16,9 +16,7 @@ namespace MayProject.Books
             Title = title;
         }
 
-        public Note()
-        {
-            Title = "No title";
-        }
+        public Note() : this("No title")
+        { }
     }
 }
