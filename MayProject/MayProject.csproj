@@ -54,8 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Books\AbstractBookElement.cs" />
-    <Compile Include="Books\AbstractIllustratableElement.cs" />
+    <Compile Include="Contracts\IElement.cs" />
     <Compile Include="Contracts\IIllustratable.cs" />
     <Compile Include="XmlManager.cs" />
     <Page Include="MainWindow.xaml">

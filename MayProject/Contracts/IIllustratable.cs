@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace MayProject.Contracts
 {
-    interface IIllustratable
+    interface IIllustratable : IElement
     {
-        void AddIllustration(string path);
-        void RemoveIllustration();
+        List<Bitmap> Illustrations { get; set; }
     }
 }

@@ -3,42 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MayProject.Contracts;
+using System.Drawing;
 
 namespace MayProject.Books
 {
     [Serializable]
-    public class Character : AbstractIllustratableElement
+    public class Character : IIllustratable
     {
+        public string Title { get; set; }
         public string Description { get; set; }
         public List<Location> Locations { get; set; } = new List<Location>();
+        public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
 
         public Character(string title)
         {
             Title = title;
-            Illustrations = new List<System.Drawing.Bitmap>();
         }
 
         public Character() : this("No name")
         { }
-
-        public override void AddIllustration(string path)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void RemoveIllustration()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddLocation(Location location)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveLocation(Location location)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

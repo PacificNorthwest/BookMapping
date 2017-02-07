@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MayProject.Books
+namespace MayProject.Contracts
 {
-    public abstract class AbstractBookElement
+    interface IElement
     {
-        public string Title { get; set; }
+        string Title { get; set; }
     }
 }
