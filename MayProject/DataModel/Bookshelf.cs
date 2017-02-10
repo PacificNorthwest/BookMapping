@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MayProject.Contracts
+namespace MayProject.DataModel
 {
-    public interface IElement
+    class Bookshelf
     {
-        string Title { get; set; }
+        public static List<Book> Books { get; set; } = new List<Book>();
     }
 }

@@ -12,7 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MayProject.Books;
+using MayProject.DataModel;
+using MayProject.Controller;
+using MayProject.Contracts;
+using System.Reflection;
 
 namespace MayProject
 {

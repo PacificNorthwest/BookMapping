@@ -6,24 +6,22 @@ using System.Threading.Tasks;
 using MayProject.Contracts;
 using System.Drawing;
 
-namespace MayProject.Books
+namespace MayProject.DataModel
 {
     [Serializable]
-    public class Book : IIllustratable
+    public class Location : IIllustratable
     {
         public string Title { get; set; }
+        public string Description { get; set; }
         public List<Character> Characters { get; set; } = new List<Character>();
-        public List<Location> Locations { get; set; } = new List<Location>();
-        public List<Note> Notes { get; set; } = new List<Note>();
-        public List<Chapter> Chapters { get; set; } = new List<Chapter>();
         public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
 
-        public Book(string title)
+        public Location(string title)
         {
             Title = title;
         }
 
-        public Book() : this("No title")
+        public Location() : this("No title")
         { }
     }
 }

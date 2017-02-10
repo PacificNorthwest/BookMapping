@@ -16,7 +16,6 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.exe
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.pdb
 E:\Диплом\Май\Git\May\MayProject\bin\Debug\MayProject.exe
 E:\Диплом\Май\Git\May\MayProject\bin\Debug\MayProject.pdb
-E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MainWindow.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MainWindow.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\App.g.cs
@@ -24,3 +23,4 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject_MarkupCompile.cac
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.g.resources
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.Properties.Resources.resources
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csproj.GenerateResource.Cache
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache

@@ -56,7 +56,8 @@
     </ApplicationDefinition>
     <Compile Include="Contracts\IElement.cs" />
     <Compile Include="Contracts\IIllustratable.cs" />
-    <Compile Include="XmlManager.cs" />
+    <Compile Include="Controller\BookControl.cs" />
+    <Compile Include="Controller\XmlManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,11 +66,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Books\Book.cs" />
-    <Compile Include="Books\Chapter.cs" />
-    <Compile Include="Books\Character.cs" />
-    <Compile Include="Books\Location.cs" />
-    <Compile Include="Books\Note.cs" />
+    <Compile Include="DataModel\Book.cs" />
+    <Compile Include="DataModel\Bookshelf.cs" />
+    <Compile Include="DataModel\Chapter.cs" />
+    <Compile Include="DataModel\Character.cs" />
+    <Compile Include="DataModel\Location.cs" />
+    <Compile Include="DataModel\Note.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

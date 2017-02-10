@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MayProject.Contracts;
 
-namespace MayProject.Books
+namespace MayProject.DataModel
 {
     [Serializable]
     public class Chapter : IElement

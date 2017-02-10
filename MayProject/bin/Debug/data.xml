@@ -1,8 +1,17 @@
 <?xml version="1.0"?>
-<Book xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <BookName>Harry Potter</BookName>
-  <Characters />
-  <Locations />
-  <Notes />
-  <Chapters />
-</Book>
+<ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Book>
+    <Title>Harry Potter</Title>
+    <Characters />
+    <Locations>
+      <Location>
+        <Title>Hogwarts</Title>
+        <Characters />
+        <Illustrations />
+      </Location>
+    </Locations>
+    <Notes />
+    <Chapters />
+    <Illustrations />
+  </Book>
+</ArrayOfBook>
