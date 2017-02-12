@@ -22,7 +22,7 @@ namespace MayProject.Controller
             Bookshelf.Books = XmlManager.Load(books.GetType()) as List<Book>;
         }
 
-        public static void AddBook(this List<Book> books, string title)
+        public static void Add(this List<Book> books, string title)
         {
             books.Add(new Book(title));
         }
@@ -30,18 +30,27 @@ namespace MayProject.Controller
         public static void Delete(this IElement bookElement)
         {
             var bookElementType = bookElement.GetType().FullName;
-            var propertys = typeof(Book).GetProperties().Where(x => x.PropertyType.GenericTypeArguments.Length > 0 &&
-                                                               x.PropertyType.GenericTypeArguments[0].FullName == bookElementType).ToList();
-            foreach (var property in propertys)
+            var properties = typeof(Book).GetProperties().Where(property => property.PropertyType.GenericTypeArguments.Length > 0 &&
+                                                                property.PropertyType.GenericTypeArguments[0].FullName == bookElementType).ToList();
+
+            foreach (var book in Bookshelf.Books)
             {
-                var list = typeof(Book).GetProperty(property.Name).GetValue(Bookshelf.Books[0]);
-                list.GetType().GetMethod("Remove").Invoke(list, new object[] { bookElement });
+                foreach (var property in properties)
+                {
+                    var list = typeof(Book).GetProperty(property.Name).GetValue(book);
+                    list.GetType().GetMethod("Remove").Invoke(list, new object[] { bookElement });
+                }
             }
         }
 
-        public static void AddIllustration(this IIllustratable bookElement, string path)
+        public static void Delete(this Book book)
         {
-            bookElement.Illustrations.Add(new Bitmap(path));
+            Bookshelf.Books.Remove(book);
+        }
+
+        public static void AddIllustration(this List<Bitmap> illustrations, string path)
+        {
+            illustrations.Add(new Bitmap(path));
         }
         public static void DeleteIllustration(this IIllustratable bookElement, int ID)
         {
