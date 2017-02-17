@@ -48,11 +48,11 @@ namespace MayProject.Controller
             Bookshelf.Books.Remove(book);
         }
 
-        public static void AddIllustration(this List<Bitmap> illustrations, string path)
+        public static void AddIllustration(this IIllustratable illustratableElement, string path)
         {
-            illustrations.Add(new Bitmap(path));
+            illustratableElement.Illustrations.Add(new Bitmap(path));
         }
-        public static void DeleteIllustration(this IIllustratable bookElement, int ID)
+        public static void DeleteIllustration()
         {
             throw new NotImplementedException();
         }

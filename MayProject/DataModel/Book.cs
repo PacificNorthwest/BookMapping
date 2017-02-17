@@ -23,7 +23,6 @@ namespace MayProject.DataModel
             Title = title;
         }
 
-        public Book() : this("No title")
-        { }
+        public Book() : this("No title") { }
     }
 }
