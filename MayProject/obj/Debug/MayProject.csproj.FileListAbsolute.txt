@@ -24,3 +24,8 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.g.resources
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.Properties.Resources.resources
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csproj.GenerateResource.Cache
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\CategoriesMenu.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject_MarkupCompile.lref
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\CategoriesMenu.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookMenu.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookMenu.baml

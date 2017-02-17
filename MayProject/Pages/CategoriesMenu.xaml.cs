@@ -12,28 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MayProject.DataModel;
-using MayProject.Controller;
-using MayProject.Contracts;
-using MayProject.Pages;
 
-namespace MayProject
+namespace MayProject.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для CategoriesMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CategoriesMenu : UserControl
     {
-        public MainWindow()
+        public CategoriesMenu()
         {
             InitializeComponent();
-            PageSwitcher.mainWindow = this;
-            PageSwitcher.Switch(new BookMenu());
-        }
-
-        public void Navigate(UserControl usercontrol)
-        {
-            this.Content = usercontrol;
         }
     }
 }
