@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:MayProject.Pages"
              mc:Ignorable="d" 
              Height="644" Width="1114.5">
-    <Grid>
-        <WrapPanel Name="Container" Background="Gray"/>
-    </Grid>
+    <ScrollViewer>
+        <Grid>
+            <WrapPanel Name="Container" Background="Gray"/>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

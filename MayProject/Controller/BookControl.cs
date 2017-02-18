@@ -82,15 +82,16 @@ namespace MayProject.Controller
 
         public static BitmapImage ToBitmapImage(this Bitmap bitmap)
         {
-            MemoryStream ms = new MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            ms.Seek(0, SeekOrigin.Begin);
-            image.StreamSource = ms;
-            image.EndInit();
+            MemoryStream memory = new MemoryStream();
+            bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+            memory.Position = 0;
+            BitmapImage img = new BitmapImage();
+            img.BeginInit();
+            img.StreamSource = memory;
+            img.CacheOption = BitmapCacheOption.OnLoad;
+            img.EndInit();
 
-            return image;
+            return img;
         }
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MayProject.DataModel;
 
 namespace MayProject.Pages
 {
@@ -20,8 +21,11 @@ namespace MayProject.Pages
     /// </summary>
     public partial class CategoriesMenu : UserControl
     {
-        public CategoriesMenu()
+        private Book _book;
+
+        public CategoriesMenu(Book book)
         {
+            this._book = book;
             InitializeComponent();
         }
     }

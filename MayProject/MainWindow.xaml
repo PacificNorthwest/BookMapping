@@ -2,7 +2,6 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="" Height="644" Width="1114.5" Background="Gray" >
-    <Grid>
-        
+    <Grid Name = "GridContainer">
     </Grid>
 </Window>
