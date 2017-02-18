@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using MayProject.DataModel;
 using MayProject.Contracts;
 using System.Drawing;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace MayProject.Controller
 {
@@ -75,6 +78,19 @@ namespace MayProject.Controller
         public static void AddNote(this Book book, string title)
         {
             book.Notes.Add(new Note(title));
+        }
+
+        public static BitmapImage ToBitmapImage(this Bitmap bitmap)
+        {
+            MemoryStream ms = new MemoryStream();
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+
+            return image;
         }
     }
 }

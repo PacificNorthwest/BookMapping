@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Markup;
+using System.IO;
 using MayProject;
 using MayProject.Controller;
 using MayProject.DataModel;
@@ -24,6 +25,9 @@ namespace MayProject.Pages
     /// </summary>
     public partial class BookMenu : UserControl
     {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern bool DeleteObject(IntPtr hObject);
+
         public BookMenu()
         {
             InitializeComponent();
@@ -35,12 +39,32 @@ namespace MayProject.Pages
         {
             foreach (Book book in Bookshelf.Books)
             {
+                //Тест
+                book.AddIllustration(@"C:\Users\crime\Desktop\lena512.bmp");
+
+                //Перенести в методы расширения
+                MemoryStream memory = new MemoryStream();
+                book.Illustrations[0].Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage img = new BitmapImage();
+                img.BeginInit();
+                img.StreamSource = memory;
+                img.CacheOption = BitmapCacheOption.OnLoad;
+                img.EndInit();
+
+
                 StringBuilder buttonXaml = new StringBuilder();
                 buttonXaml.Append(@"<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
-                                     xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
-                buttonXaml.Append($"Content = '{book.Title}' Margin = '20' FontSize = '30'");
-                buttonXaml.Append("/>");
+                                            xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
+                buttonXaml.Append("Margin = '20' FontSize = '30'>");
+                buttonXaml.Append("</Button>");
+
+                //Допилить контент
                 Button button = XamlReader.Parse(buttonXaml.ToString()) as Button;
+                Image image = new Image();
+                image.Source = img;
+                button.Content = image;
+
                 button.Click += Button_Click;
                 Container.Children.Add(button);
             }

@@ -64,16 +64,16 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="184*"/>
-            <ColumnDefinition Width="140*"/>
-            <ColumnDefinition Width="42*"/>
-            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="201*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="54*"/>
+            <ColumnDefinition Width="161*"/>
             <ColumnDefinition Width="26*"/>
             <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="190*"/>
-            <ColumnDefinition Width="42*"/>
-            <ColumnDefinition Width="131*"/>
-            <ColumnDefinition Width="185*"/>
+            <ColumnDefinition Width="200*"/>
+            <ColumnDefinition Width="34*"/>
+            <ColumnDefinition Width="132*"/>
+            <ColumnDefinition Width="186*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -106,7 +106,7 @@
                 <TextBlock>Locations</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Button_Notes" Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3" Margin="40,0,0,58" Grid.ColumnSpan="2">
+        <Button Name="Button_Notes" Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3" Margin="10,0,0,58" Grid.ColumnSpan="2">
             <Viewbox Margin="20">
                 <TextBlock>Notes</TextBlock>
             </Viewbox>
