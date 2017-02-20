@@ -22,6 +22,7 @@ namespace MayProject.Pages
     public partial class CategoriesMenu : UserControl
     {
         private Book _book;
+        public string BookTitle => _book.Title;
 
         public CategoriesMenu(Book book)
         {

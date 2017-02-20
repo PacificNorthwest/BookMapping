@@ -28,12 +28,57 @@ namespace MayProject
         {
             InitializeComponent();
             PageSwitcher.mainWindow = this;
-            PageSwitcher.Switch(new BookMenu());
+            this.WorkArea.Items.Add(NewTab());
+        }
+
+        private TabItem NewTab()
+        {
+            TabItem tabItem = new TabItem();
+            tabItem.Header = "New tab";
+            tabItem.Background = new SolidColorBrush(Colors.DarkGray);
+            tabItem.Content = new BookMenu();
+
+            return tabItem;
         }
 
         public void Navigate(UserControl usercontrol)
         {
-            this.Content = usercontrol;
+            if (usercontrol is CategoriesMenu)
+                (this.WorkArea.SelectedItem as TabItem).Header = (usercontrol as CategoriesMenu).BookTitle;
+            (this.WorkArea.SelectedItem as TabItem).Content = usercontrol;
         }
+
+        private void NewTabButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.WorkArea.Items.Add(NewTab());
+            this.WorkArea.SelectedIndex = this.WorkArea.Items.Count - 1;
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                if (e.ClickCount == 2)
+                {
+                    AdjustWindowSize();
+                }
+                else
+                {
+                    Application.Current.MainWindow.DragMove();
+                }
+        }
+
+        private void AdjustWindowSize()
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
+        }
+
     }
 }

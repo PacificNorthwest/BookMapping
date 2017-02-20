@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BorderClipConverter.cs" />
     <Compile Include="Contracts\IElement.cs" />
     <Compile Include="Contracts\IIllustratable.cs" />
     <Compile Include="Controller\BookControl.cs" />
@@ -121,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\book-05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2248-200.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

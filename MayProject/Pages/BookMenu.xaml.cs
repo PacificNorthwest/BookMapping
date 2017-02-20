@@ -25,23 +25,26 @@ namespace MayProject.Pages
     /// </summary>
     public partial class BookMenu : UserControl
     {
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        public static extern bool DeleteObject(IntPtr hObject);
-
         public BookMenu()
         {
-            InitializeComponent();
             Bookshelf.Books.Load();
+            InitializeComponent();
             Visualize();
         }
 
         private void Visualize()
         {
             //Тест
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Bookshelf.Books.Add(i.ToString());
             }
+
+            StringBuilder buttonXaml = new StringBuilder();
+            buttonXaml.Append(@"<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
+                                        xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
+            buttonXaml.Append("Margin = '20' FontSize = '30' MaxWidth = '200'>");
+            buttonXaml.Append("</Button>");
 
             foreach (Book book in Bookshelf.Books)
             {
@@ -49,32 +52,34 @@ namespace MayProject.Pages
                 book.Illustrations.Add(Properties.Resources.book_05);
 
                 BitmapImage img = book.Illustrations[0].ToBitmapImage();
-                StringBuilder buttonXaml = new StringBuilder();
-                buttonXaml.Append(@"<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
-                                            xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
-                buttonXaml.Append("Margin = '20' FontSize = '30' MaxWidth = '200'>");
-                buttonXaml.Append("</Button>");
-
                 //Допилить контент
                 Button button = XamlReader.Parse(buttonXaml.ToString()) as Button;
 
                 Image image = new Image();
                 image.Source = img;
-
-                Grid grid = new Grid();
-                grid.Children.Add(image);
-
                 Label label = new Label();
+                label.Margin = new Thickness(0, 120, 0, 0);
                 label.Content = book.Title;
-                label.Margin = new Thickness(30, 120, 0, 0);
-                grid.Children.Add(label);
 
                 button.DataContext = book;
-                button.Content = grid;
-
+                button.Content = CreateGrid(image, label);
                 button.Click += Button_Click;
                 Container.Children.Add(button);
             }
+        }
+
+        private Grid CreateGrid(Image image, Label label)
+        {
+            Grid grid = new Grid();
+            /*Rectangle rect = new Rectangle();
+            rect.RadiusX = 10;
+            rect.RadiusY = 10;
+            rect.Fill = new ImageBrush(image);
+            */
+            grid.Children.Add(image);
+            grid.Children.Add(label);
+
+            return grid;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

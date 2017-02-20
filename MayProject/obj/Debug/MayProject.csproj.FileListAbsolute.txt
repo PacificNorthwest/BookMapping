@@ -29,3 +29,4 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject_MarkupCompile.lre
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\CategoriesMenu.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookMenu.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookMenu.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\GeneratedInternalTypeHelper.g.cs

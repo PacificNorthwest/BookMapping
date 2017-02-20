@@ -63,6 +63,16 @@ namespace MayProject.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2248_200 {
+            get {
+                object obj = ResourceManager.GetObject("_2248_200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap book_05 {
             get {
                 object obj = ResourceManager.GetObject("book_05", resourceCulture);
