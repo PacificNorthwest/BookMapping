@@ -34,12 +34,6 @@ namespace MayProject.Pages
 
         private void Visualize()
         {
-            //Тест
-            for (int i = 0; i < 5; i++)
-            {
-                Bookshelf.Books.Add(i.ToString());
-            }
-
             StringBuilder buttonXaml = new StringBuilder();
             buttonXaml.Append(@"<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
                                         xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
@@ -52,13 +46,14 @@ namespace MayProject.Pages
                 book.Illustrations.Add(Properties.Resources.book_05);
 
                 BitmapImage img = book.Illustrations[0].ToBitmapImage();
-                //Допилить контент
                 Button button = XamlReader.Parse(buttonXaml.ToString()) as Button;
 
                 Image image = new Image();
                 image.Source = img;
+
                 Label label = new Label();
-                label.Margin = new Thickness(0, 120, 0, 0);
+                label.VerticalAlignment = VerticalAlignment.Center;
+                label.HorizontalAlignment = HorizontalAlignment.Left;
                 label.Content = book.Title;
 
                 button.DataContext = book;
@@ -71,13 +66,21 @@ namespace MayProject.Pages
         private Grid CreateGrid(Image image, Label label)
         {
             Grid grid = new Grid();
-            /*Rectangle rect = new Rectangle();
-            rect.RadiusX = 10;
-            rect.RadiusY = 10;
-            rect.Fill = new ImageBrush(image);
-            */
+            Viewbox viewbox = new Viewbox();
+            viewbox.Child = label;
+            RowDefinition firstRow = new RowDefinition();
+            firstRow.Height = GridLength.Auto;
+            RowDefinition secondRow = new RowDefinition();
+            secondRow.Height = new GridLength(0.3, GridUnitType.Star);
+            grid.RowDefinitions.Add(firstRow);
+            grid.RowDefinitions.Add(secondRow);
+            Grid.SetRow(image, 0);
+            Grid.SetColumn(image, 0);
+            Grid.SetRow(viewbox, 1);
+            Grid.SetColumn(viewbox, 1);
+
             grid.Children.Add(image);
-            grid.Children.Add(label);
+            grid.Children.Add(viewbox);
 
             return grid;
         }
