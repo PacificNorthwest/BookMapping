@@ -89,5 +89,23 @@ namespace MayProject.Pages
         {
             PageSwitcher.Switch(new CategoriesMenu((sender as Button).DataContext as Book));
         }
+
+        private void ContextMenuButton_MouseOver(object sender, RoutedEventArgs e)
+        { 
+            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = (sender as Button).DataContext as string;
+        }
+
+        private void ContextMenuButton_MouseLeave(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = string.Empty;
+        }
     }
 }

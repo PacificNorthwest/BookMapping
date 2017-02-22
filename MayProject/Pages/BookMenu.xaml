@@ -22,11 +22,8 @@
             </Setter>
             <Setter Property="Control.FontSize" Value="25"/>
             <Setter Property="Control.FontWeight" Value="Bold"/>
-            <Style.Triggers>
-                <Trigger Property="Control.IsMouseOver" Value="True">
-                    <Setter Property="Control.Background" Value="Red"/>
-                </Trigger>
-            </Style.Triggers>
+            <EventSetter Event="Control.MouseEnter" Handler="ContextMenuButton_MouseOver"/>
+            <EventSetter Event="Control.MouseLeave" Handler="ContextMenuButton_MouseLeave"/>
         </Style>
 
         <Style TargetType="Button">
@@ -46,24 +43,27 @@
                                 </MultiBinding>
                             </Border.Clip>
                             <Border.ContextMenu>
-                                <ContextMenu Placement="MousePoint" VerticalOffset="-60" HorizontalOffset="60" Height="80" Width="120">
+                                <ContextMenu x:Name="BookContextMenu" Placement="MousePoint" VerticalOffset="-100" HorizontalOffset="60" Height="120" Width="120">
                                     <ContextMenu.Template>
                                         <ControlTemplate TargetType="{x:Type ContextMenu}">
                                             <Grid>
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"/>
                                                     <RowDefinition Height="Auto" MinHeight="40"/>
                                                     <RowDefinition Height="Auto" MinHeight="40"/>
                                                 </Grid.RowDefinitions>
 
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto" MinWidth="40"/>
-                                                    <ColumnDefinition Width="Auto" MinWidth="40"/>
-                                                    <ColumnDefinition Width="Auto" MinWidth="40"/>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
                                                 </Grid.ColumnDefinitions>
-
-                                                <Button Name="ButtonDeleteBook" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X"/>
-                                                <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="0" Content="+"/>
-                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/"/>
+                                                <Viewbox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                                    <TextBlock x:Name="ContextMenuDescription"/>
+                                                </Viewbox>
+                                                <Button Name="ButtonDeleteBook" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete"/>
+                                                <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration"/>
+                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </ContextMenu.Template>
