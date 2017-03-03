@@ -34,6 +34,7 @@ namespace MayProject.Pages
 
         private void Visualize()
         {
+            Container.Children.Clear();
             StringBuilder buttonXaml = new StringBuilder();
             buttonXaml.Append(@"<Button xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation' 
                                         xmlns:x='http://schemas.microsoft.com/winfx/2006/xaml' ");
@@ -43,9 +44,13 @@ namespace MayProject.Pages
             foreach (Book book in Bookshelf.Books)
             {
                 //Тест
-                book.Illustrations.Add(Properties.Resources.book_05);
+                //book.Illustrations.Add(Properties.Resources.book_05);
+                BitmapImage img;
+                if (book.Illustrations.Count > 0)
+                    img = book.Illustrations[0].ToBitmapImage();
+                else
+                    img = Properties.Resources.book_05.ToBitmapImage();
 
-                BitmapImage img = book.Illustrations[0].ToBitmapImage();
                 Button button = XamlReader.Parse(buttonXaml.ToString()) as Button;
 
                 Image image = new Image();
@@ -61,6 +66,13 @@ namespace MayProject.Pages
                 button.Click += Button_Click;
                 Container.Children.Add(button);
             }
+
+            Button buttonNewBook = XamlReader.Parse(buttonXaml.ToString()) as Button;
+            Image newBookIcon = new Image();
+            newBookIcon.Source = Properties.Resources.newBook.ToBitmapImage();
+            buttonNewBook.Content = newBookIcon;
+            buttonNewBook.Click += ButtonNewBook_Click;
+            Container.Children.Add(buttonNewBook);
         }
 
         private Grid CreateGrid(Image image, Label label)
@@ -85,6 +97,19 @@ namespace MayProject.Pages
             return grid;
         }
 
+        private void ButtonNewBook_Click(object sender, RoutedEventArgs e)
+        {
+            NewBookWindow newBookWindow = new NewBookWindow();
+            newBookWindow.ShowDialog();
+            string newBookTitle = newBookWindow.NewBookTitle;
+            if (!string.IsNullOrEmpty(newBookTitle))
+            {
+                Bookshelf.Books.Add(newBookTitle);
+                Bookshelf.Books.Save();
+            }
+            Visualize();
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PageSwitcher.Switch(new CategoriesMenu((sender as Button).DataContext as Book));
@@ -106,6 +131,27 @@ namespace MayProject.Pages
                 .Cast<UIElement>()
                 .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
                 .Text = string.Empty;
+        }
+
+        private void ButtonDeleteBook_Click(object sender, RoutedEventArgs e)
+        {
+            (((((sender as Button)
+                .Parent as Grid)
+                .TemplatedParent as ContextMenu)
+                .PlacementTarget as Border)
+                .DataContext as Book).Delete();
+            Bookshelf.Books.Save();
+            Visualize();
+        }
+
+        private void ButtonAddIllustration_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ButtonRename_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

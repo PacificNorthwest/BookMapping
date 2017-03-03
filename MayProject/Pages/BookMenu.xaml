@@ -43,7 +43,7 @@
                                 </MultiBinding>
                             </Border.Clip>
                             <Border.ContextMenu>
-                                <ContextMenu x:Name="BookContextMenu" Placement="MousePoint" VerticalOffset="-100" HorizontalOffset="60" Height="120" Width="120">
+                                <ContextMenu x:Name="BookContextMenu" Placement="MousePoint" VerticalOffset="-100" HorizontalOffset="-60" Height="120" Width="120">
                                     <ContextMenu.Template>
                                         <ControlTemplate TargetType="{x:Type ContextMenu}">
                                             <Grid>
@@ -61,9 +61,9 @@
                                                 <Viewbox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
                                                     <TextBlock x:Name="ContextMenuDescription"/>
                                                 </Viewbox>
-                                                <Button Name="ButtonDeleteBook" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete"/>
-                                                <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration"/>
-                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename"/>
+                                                <Button Name="ButtonDeleteBook" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete" Click="ButtonDeleteBook_Click"/>
+                                                <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration" Click="ButtonAddIllustration_Click"/>
+                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename" Click="ButtonRename_Click"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </ContextMenu.Template>

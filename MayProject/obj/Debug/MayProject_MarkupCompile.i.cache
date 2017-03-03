@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\Диплом\Май\Git\May\MayProject\App.xaml
-3-383026656
+4-146700156
 
-23-1888897227
+24-328160654
 131478842535
-MainWindow.xaml;Pages\BookMenu.xaml;Pages\CategoriesMenu.xaml;
+MainWindow.xaml;Pages\BookMenu.xaml;Pages\CategoriesMenu.xaml;Pages\NewBookWindow.xaml;
 
-True
+False
 

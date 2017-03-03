@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\NewBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageSwitcher.cs" />
@@ -94,6 +98,9 @@
     </Compile>
     <Compile Include="Pages\CategoriesMenu.xaml.cs">
       <DependentUpon>CategoriesMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\NewBookWindow.xaml.cs">
+      <DependentUpon>NewBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -126,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\2248-200.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\app_type_pharmacy_512px_GREY.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newBook.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
