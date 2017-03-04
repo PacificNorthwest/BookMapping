@@ -43,13 +43,11 @@ namespace MayProject.Pages
 
             foreach (Book book in Bookshelf.Books)
             {
-                //Тест
-                //book.Illustrations.Add(Properties.Resources.book_05);
                 BitmapImage img;
                 if (book.Illustrations.Count > 0)
                     img = book.Illustrations[0].ToBitmapImage();
                 else
-                    img = Properties.Resources.book_05.ToBitmapImage();
+                    img = Properties.Resources._2248_200.ToBitmapImage();
 
                 Button button = XamlReader.Parse(buttonXaml.ToString()) as Button;
 
@@ -117,7 +115,7 @@ namespace MayProject.Pages
 
         private void ContextMenuButton_MouseOver(object sender, RoutedEventArgs e)
         { 
-            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 178, 34, 34));
             ((((sender as Button).Parent as Grid).Children
                 .Cast<UIElement>()
                 .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
@@ -141,6 +139,9 @@ namespace MayProject.Pages
                 .PlacementTarget as Border)
                 .DataContext as Book).Delete();
             Bookshelf.Books.Save();
+            (((sender as Button)
+                .Parent as Grid)
+                .TemplatedParent as ContextMenu).Visibility = Visibility.Collapsed;
             Visualize();
         }
 

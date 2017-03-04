@@ -1,15 +1,7 @@
 <?xml version="1.0"?>
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
-    <Title>Fahrenheit</Title>
-    <Characters />
-    <Locations />
-    <Notes />
-    <Chapters />
-    <Illustrations />
-  </Book>
-  <Book>
-    <Title>Some title</Title>
+    <Title>Harry Potter</Title>
     <Characters />
     <Locations />
     <Notes />

@@ -37,6 +37,7 @@ namespace MayProject.Pages
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
+            textBoxBookTitle.Text = string.Empty;
             this.Close();
         }
     }

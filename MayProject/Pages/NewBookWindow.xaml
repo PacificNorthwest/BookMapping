@@ -10,7 +10,9 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        Background="DarkGray">
+        Background="DarkGray"
+        FocusManager.FocusedElement="{Binding ElementName=textBoxBookTitle}"
+        BorderThickness="1">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

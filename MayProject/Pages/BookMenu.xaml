@@ -59,7 +59,7 @@
                                                     <ColumnDefinition Width="40" MinWidth="40"/>
                                                 </Grid.ColumnDefinitions>
                                                 <Viewbox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-                                                    <TextBlock x:Name="ContextMenuDescription"/>
+                                                    <TextBlock x:Name="ContextMenuDescription" Foreground="White"/>
                                                 </Viewbox>
                                                 <Button Name="ButtonDeleteBook" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete" Click="ButtonDeleteBook_Click"/>
                                                 <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration" Click="ButtonAddIllustration_Click"/>
