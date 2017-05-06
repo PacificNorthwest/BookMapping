@@ -17,27 +17,29 @@ namespace MayProject.Pages
     /// <summary>
     /// Логика взаимодействия для NewBookWindow.xaml
     /// </summary>
-    public partial class NewBookWindow : Window
+    public partial class NewElementWindow : Window
     {
-        public string NewBookTitle { get; private set; }
+        public string NewElementTitle { get; private set; }
 
-        public NewBookWindow()
+        public NewElementWindow()
         {
             InitializeComponent();
         }
 
         private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            if (textBoxBookTitle.Text == string.Empty)
+            if (string.IsNullOrEmpty(textBoxTitle.Text))
                 MessageBox.Show("Empty title!");
             else
-                NewBookTitle = textBoxBookTitle.Text;
-            this.Close();
+            {
+                NewElementTitle = textBoxTitle.Text;
+                this.Close();
+            }
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            textBoxBookTitle.Text = string.Empty;
+            textBoxTitle.Text = string.Empty;
             this.Close();
         }
     }

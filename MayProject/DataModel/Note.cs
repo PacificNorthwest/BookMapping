@@ -13,12 +13,13 @@ namespace MayProject.DataModel
         public string Title { get; set; }
         public string Content { get; set; }
 
-        public Note(string title)
+        public Note(string title, string content)
         {
             Title = title;
+            Content = content;
         }
 
-        public Note() : this("No title")
+        public Note() : this("No title", string.Empty)
         { }
     }
 }

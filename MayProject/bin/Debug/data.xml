@@ -4,7 +4,16 @@
     <Title>Harry Potter</Title>
     <Characters />
     <Locations />
-    <Notes />
+    <Notes>
+      <Note>
+        <Title>123</Title>
+        <Content>Это первая заметка!</Content>
+      </Note>
+      <Note>
+        <Title>222</Title>
+        <Content>Это вторая заметка!</Content>
+      </Note>
+    </Notes>
     <Chapters />
     <Illustrations />
   </Book>

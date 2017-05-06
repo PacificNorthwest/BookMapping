@@ -75,9 +75,9 @@ namespace MayProject.Controller
             book.Locations.Add(new Location(title));
         }
 
-        public static void AddNote(this Book book, string title)
+        public static void AddNote(this Book book, string title, string content)
         {
-            book.Notes.Add(new Note(title));
+            book.Notes.Add(new Note(title, content));
         }
 
         public static BitmapImage ToBitmapImage(this Bitmap bitmap)

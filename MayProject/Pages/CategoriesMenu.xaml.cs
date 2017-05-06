@@ -29,5 +29,17 @@ namespace MayProject.Pages
             this._book = book;
             InitializeComponent();
         }
+
+        private void CategoryClick(object sender, RoutedEventArgs e)
+        {
+            switch ((sender as Button).DataContext as string)
+            {
+                case "Notes":
+                    {
+                        PageSwitcher.Switch(new NotesPage(_book.Notes));
+                        break;
+                    }
+            }
+        }
     }
 }

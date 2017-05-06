@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              Height="644" Width="1114.5" Background="Gray">
     <UserControl.Resources>
-        <Style x:Key="ButtonStyle">
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Control.FontSize" Value="35"/>
             <Setter Property="Control.HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Control.VerticalAlignment" Value="Stretch"/>
@@ -60,6 +60,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <EventSetter Event="Click" Handler="CategoryClick"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -91,27 +92,27 @@
             <RowDefinition Height="68*"/>
         </Grid.RowDefinitions>
 
-        <Button Name="Button_Chapters" Style="{StaticResource ButtonStyle}" Grid.Column="3" Grid.RowSpan="3" Grid.Row="8" Margin="5,5,0,1" Grid.ColumnSpan="3">
+        <Button Name="Button_Chapters" Style="{StaticResource ButtonStyle}" Grid.Column="3" Grid.RowSpan="3" Grid.Row="8" Margin="5,5,0,1" Grid.ColumnSpan="3" DataContext="Chapters">
             <Viewbox Margin="20">
                 <TextBlock>Chapters</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Button_Characters" Style="{StaticResource ButtonStyle}" Grid.Column="5" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="3,0,0,0" Grid.Row="6">
+        <Button Name="Button_Characters" Style="{StaticResource ButtonStyle}" Grid.Column="5" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="3,0,0,0" Grid.Row="6" DataContext="Characters">
             <Viewbox Margin="15">
                 <TextBlock>Characters</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Button_Locations" Style="{StaticResource ButtonStyle}" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="5" Margin="2,19,10,10">
+        <Button Name="Button_Locations" Style="{StaticResource ButtonStyle}" Grid.Column="2" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="5" Margin="2,19,10,10" DataContext="Locations">
             <Viewbox Margin="20">
                 <TextBlock>Locations</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Button_Notes" Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3" Margin="10,0,0,58" Grid.ColumnSpan="2">
+        <Button Name="Button_Notes" Style="{StaticResource ButtonStyle}" Grid.Column="1" Grid.Row="7" Grid.RowSpan="3" Margin="10,0,0,58" Grid.ColumnSpan="2" DataContext="Notes">
             <Viewbox Margin="20">
                 <TextBlock>Notes</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Connections" Style="{StaticResource ButtonStyle}" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="10,4,5,4" Grid.Row="1">
+        <Button Name="Connections" Style="{StaticResource ButtonStyle}" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="10,4,5,4" Grid.Row="1" DataContext="Connections">
             <Viewbox Margin="15">
                 <TextBlock>Connections</TextBlock>
             </Viewbox>

@@ -67,7 +67,7 @@ namespace MayProject.Pages
 
             Button buttonNewBook = XamlReader.Parse(buttonXaml.ToString()) as Button;
             Image newBookIcon = new Image();
-            newBookIcon.Source = Properties.Resources.newBook.ToBitmapImage();
+            newBookIcon.Source = Properties.Resources.plus.ToBitmapImage();
             buttonNewBook.Content = newBookIcon;
             buttonNewBook.Click += ButtonNewBook_Click;
             Container.Children.Add(buttonNewBook);
@@ -97,9 +97,9 @@ namespace MayProject.Pages
 
         private void ButtonNewBook_Click(object sender, RoutedEventArgs e)
         {
-            NewBookWindow newBookWindow = new NewBookWindow();
+            NewElementWindow newBookWindow = new NewElementWindow();
             newBookWindow.ShowDialog();
-            string newBookTitle = newBookWindow.NewBookTitle;
+            string newBookTitle = newBookWindow.NewElementTitle;
             if (!string.IsNullOrEmpty(newBookTitle))
             {
                 Bookshelf.Books.Add(newBookTitle);
