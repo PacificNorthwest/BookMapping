@@ -55,6 +55,11 @@ namespace MayProject.Pages
                         PageSwitcher.Switch(new ElementMenu(_book.Locations));
                         break;
                     }
+                case "Relations":
+                    {
+                        PageSwitcher.Switch(new RelationsMapPage());
+                        break;
+                    }
             }
         }
     }

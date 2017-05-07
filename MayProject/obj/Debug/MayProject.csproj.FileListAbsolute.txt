@@ -39,3 +39,17 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\ChapterPage.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\ChapterPage.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\LocationPage.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\LocationPage.baml
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\OpenGL.Net.dll
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.dll
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.SceneGraph.dll
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.WPF.dll
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\OpenGL.Net.xml
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.pdb
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.xml
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.SceneGraph.pdb
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.SceneGraph.xml
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.WPF.pdb
+E:\Диплом\Май\Git\May\MayProject\bin\Debug\SharpGL.WPF.xml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapPage.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapPage.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
