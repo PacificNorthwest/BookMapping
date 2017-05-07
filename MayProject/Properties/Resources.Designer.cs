@@ -63,9 +63,9 @@ namespace MayProject.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2248_200 {
+        internal static System.Drawing.Bitmap avatar {
             get {
-                object obj = ResourceManager.GetObject("_2248_200", resourceCulture);
+                object obj = ResourceManager.GetObject("avatar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,19 @@ namespace MayProject.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap book_05 {
+        internal static System.Drawing.Bitmap defaultIllustration {
             get {
-                object obj = ResourceManager.GetObject("book_05", resourceCulture);
+                object obj = ResourceManager.GetObject("defaultIllustration", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap park {
+            get {
+                object obj = ResourceManager.GetObject("park", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -26,6 +26,7 @@ namespace MayProject
     {
         public MainWindow()
         {
+            Bookshelf.Books.Load();
             InitializeComponent();
             PageSwitcher.mainWindow = this;
             this.WorkArea.Items.Add(NewTab());
@@ -36,7 +37,7 @@ namespace MayProject
             TabItem tabItem = new TabItem();
             tabItem.Header = "New tab";
             tabItem.Background = new SolidColorBrush(Colors.DarkGray);
-            tabItem.Content = new BookMenu();
+            tabItem.Content = new ElementMenu(Bookshelf.Books);
 
             return tabItem;
         }

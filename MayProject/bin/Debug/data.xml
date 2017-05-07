@@ -2,16 +2,49 @@
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
     <Title>Harry Potter</Title>
+    <Characters>
+      <Character>
+        <Title>Harry Potter</Title>
+        <Description>Main Character</Description>
+        <Locations />
+        <Illustrations />
+      </Character>
+    </Characters>
+    <Locations>
+      <Location>
+        <Title>Durmstrang</Title>
+        <Description>Magic school</Description>
+        <Characters />
+        <Illustrations />
+      </Location>
+    </Locations>
+    <Notes>
+      <Note>
+        <Title>123</Title>
+        <Text>фенечковые фенечки</Text>
+      </Note>
+      <Note>
+        <Title>This is a Note</Title>
+        <Text>Hello World! 1111</Text>
+      </Note>
+    </Notes>
+    <Chapters>
+      <Chapter>
+        <Title>Chapter 1</Title>
+        <Annotation>This is the first chapter</Annotation>
+        <Text>Hello world from first chapter!</Text>
+      </Chapter>
+    </Chapters>
+    <Illustrations />
+  </Book>
+  <Book>
+    <Title>Narnia</Title>
     <Characters />
     <Locations />
     <Notes>
       <Note>
-        <Title>123</Title>
-        <Content>Это первая заметка!</Content>
-      </Note>
-      <Note>
-        <Title>222</Title>
-        <Content>Это вторая заметка!</Content>
+        <Title>narnia note</Title>
+        <Text>Aslan is an asshole</Text>
       </Note>
     </Notes>
     <Chapters />

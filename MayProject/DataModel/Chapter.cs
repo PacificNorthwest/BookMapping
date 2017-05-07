@@ -8,7 +8,7 @@ using MayProject.Contracts;
 namespace MayProject.DataModel
 {
     [Serializable]
-    public class Chapter : IElement
+    public class Chapter : IPlainTextElement
     {
         public string Title { get; set; }
         public string Annotation { get; set; }

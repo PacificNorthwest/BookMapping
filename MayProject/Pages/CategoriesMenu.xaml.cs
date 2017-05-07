@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MayProject.DataModel;
+using MayProject.Contracts;
 
 namespace MayProject.Pages
 {
@@ -36,7 +37,22 @@ namespace MayProject.Pages
             {
                 case "Notes":
                     {
-                        PageSwitcher.Switch(new NotesPage(_book.Notes));
+                        PageSwitcher.Switch(new ElementMenu(_book.Notes));
+                        break;
+                    }
+                case "Characters":
+                    {
+                        PageSwitcher.Switch(new ElementMenu(_book.Characters));
+                        break;
+                    }
+                case "Chapters":
+                    {
+                        PageSwitcher.Switch(new ElementMenu(_book.Chapters));
+                        break;
+                    }
+                case "Locations":
+                    {
+                        PageSwitcher.Switch(new ElementMenu(_book.Locations));
                         break;
                     }
             }

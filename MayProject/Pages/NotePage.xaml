@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MayProject.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"  Background="Gray">
+             d:DesignHeight="600" d:DesignWidth="1000"  Background="Gray">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,8 +22,8 @@
             </Button.Content>
         </Button>
         <Label Content="Title:" BorderThickness="0" FontSize="35" Foreground="Black" Margin="10, 0, 0, 0" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Name="NoteTitle" BorderThickness="0" FontSize="35" Foreground="Black" Background="Gray" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-        <TextBox Name="Note" BorderThickness="0" FontSize="24" Foreground="Black" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
+        <TextBox Name="NoteTitle" BorderThickness="0" FontSize="35" Foreground="Black" Background="DarkGray" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 10, 0"/>
+        <TextBox Name="Note" BorderThickness="0" FontSize="24" Background="DarkGray" Foreground="Black" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>
         <Button Name="SaveNote" Background="Transparent" BorderThickness="0" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" MaxHeight="50" Click="SaveNote_Click">
             <Button.Content>
                 <Image Source="pack://application:,,,/Resources/save.png"/>

@@ -8,15 +8,15 @@ using MayProject.Contracts;
 namespace MayProject.DataModel
 {
     [Serializable]
-    public class Note : IElement
+    public class Note : IPlainTextElement
     {
         public string Title { get; set; }
-        public string Content { get; set; }
+        public string Text { get; set; }
 
-        public Note(string title, string content)
+        public Note(string title, string text)
         {
             Title = title;
-            Content = content;
+            Text = text;
         }
 
         public Note() : this("No title", string.Empty)
