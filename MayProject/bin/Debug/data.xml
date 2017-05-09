@@ -9,11 +9,36 @@
         <Locations />
         <Illustrations />
       </Character>
+      <Character>
+        <Title>Hermione</Title>
+        <Locations />
+        <Illustrations />
+      </Character>
+      <Character>
+        <Title>Victor Cram</Title>
+        <Locations />
+        <Illustrations />
+      </Character>
+      <Character>
+        <Title>Malfoy</Title>
+        <Locations />
+        <Illustrations />
+      </Character>
+      <Character>
+        <Title>Voldemort</Title>
+        <Locations />
+        <Illustrations />
+      </Character>
     </Characters>
     <Locations>
       <Location>
         <Title>Durmstrang</Title>
         <Description>Magic school</Description>
+        <Characters />
+        <Illustrations />
+      </Location>
+      <Location>
+        <Title>Hogwarts</Title>
         <Characters />
         <Illustrations />
       </Location>
@@ -35,6 +60,31 @@
         <Text>Hello world from first chapter!</Text>
       </Chapter>
     </Chapters>
+    <Events>
+      <Event>
+        <Title>Voldemort's death</Title>
+        <Description>Voldemort killed by Harry Potter during the Hogwarts battle</Description>
+        <ChapterName />
+        <Characters>
+          <Character>
+            <Title>Harry Potter</Title>
+            <Description>Main Character</Description>
+            <Locations />
+            <Illustrations />
+          </Character>
+          <Character>
+            <Title>Voldemort</Title>
+            <Locations />
+            <Illustrations />
+          </Character>
+        </Characters>
+        <Location>
+          <Title>Hogwarts</Title>
+          <Characters />
+          <Illustrations />
+        </Location>
+      </Event>
+    </Events>
     <Illustrations />
   </Book>
   <Book>
@@ -48,6 +98,7 @@
       </Note>
     </Notes>
     <Chapters />
+    <Events />
     <Illustrations />
   </Book>
 </ArrayOfBook>

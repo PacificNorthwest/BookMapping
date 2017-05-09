@@ -29,9 +29,18 @@ namespace MayProject.Pages
     public partial class ElementMenu : UserControl
     {
         private IEnumerable<IElement> _elements;
+        private MainWindow _window;
         public ElementMenu(IEnumerable<IElement> elements)
         {
             _elements = elements;
+            InitializeComponent();
+            Visualize();
+        }
+
+        public ElementMenu(IEnumerable<IElement> elements, MainWindow window)
+        {
+            _elements = elements;
+            _window = window;
             InitializeComponent();
             Visualize();
         }
@@ -173,7 +182,12 @@ namespace MayProject.Pages
 
         private void OpenElementPage(IElement element)
         {
-            if (element is Book)
+            if (_window != null && element is Book)
+            {
+                _window.SideMenu.Visibility = Visibility.Visible;
+                PopulateSideMenu(element as Book);
+            }
+                if (element is Book)
                 PageSwitcher.Switch(new CategoriesMenu(element as Book));
             if (element is Note)
                 PageSwitcher.Switch(new NotePage(_elements, element));
@@ -183,6 +197,65 @@ namespace MayProject.Pages
                 PageSwitcher.Switch(new CharacterProfile(_elements, element));
             if (element is Location)
                 PageSwitcher.Switch(new LocationPage(_elements, element));
+        }
+
+        private void PopulateSideMenu(Book book)
+        {
+            _window.SideMenu_Chapters.Children.Clear();
+            _window.SideMenu_Characters.Children.Clear();
+            _window.SideMenu_Locations.Children.Clear();
+            _window.SideMenu_Maps.Children.Clear();
+            _window.SideMenu_Notes.Children.Clear();
+
+            foreach (Chapter chapter in book.Chapters)
+            {
+                Button plate = new Button();
+                plate.MaxWidth = 50;
+                plate.Margin = new Thickness(2);
+                plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
+                plate.Content = book.Chapters.IndexOf(chapter) + 1;
+                _window.SideMenu_Chapters.Children.Add(plate);
+            }
+            foreach (Character character in book.Characters)
+            {
+                Button plate = CreateIllustrationPlate(character);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.FontSize = 18;
+                plate.Style = _window.FindResource("RoundCorners") as Style;
+                _window.SideMenu_Characters.Children.Add(plate);
+            }
+            foreach (Location location in book.Locations)
+            {
+                Button plate = CreateIllustrationPlate(location);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.FontSize = 18;
+                plate.Style = _window.FindResource("RoundCorners") as Style;
+                _window.SideMenu_Locations.Children.Add(plate);
+            }
+            Button relationsMap = new Button();
+            relationsMap.Content = "Relations Map";
+            relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            relationsMap.FontSize = 18;
+            relationsMap.Margin = new Thickness(2);
+            Button eventsMap = new Button();
+            eventsMap.Content = "Events Map";
+            eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            eventsMap.FontSize = 18;
+            eventsMap.Margin = new Thickness(2);
+            _window.SideMenu_Maps.Children.Add(relationsMap);
+            _window.SideMenu_Maps.Children.Add(eventsMap);
+
+            foreach (Note note in book.Notes)
+            {
+                Button plate = new Button();
+                plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                plate.Content = note.Title;
+                plate.FontSize = 18;
+                _window.SideMenu_Notes.Children.Add(plate);
+            }
+
         }
 
         private void CreateNewElement()

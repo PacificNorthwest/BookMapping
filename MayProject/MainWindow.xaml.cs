@@ -26,10 +26,20 @@ namespace MayProject
     {
         public MainWindow()
         {
-            Bookshelf.Books.Load();
-            InitializeComponent();
-            PageSwitcher.mainWindow = this;
-            this.WorkArea.Items.Add(NewTab());
+            try
+            {
+                Bookshelf.Books.Load();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                InitializeComponent();
+                PageSwitcher.mainWindow = this;
+                this.WorkArea.Items.Add(NewTab());
+            }
         }
 
         private TabItem NewTab()
@@ -37,7 +47,7 @@ namespace MayProject
             TabItem tabItem = new TabItem();
             tabItem.Header = "New tab";
             tabItem.Background = new SolidColorBrush(Colors.DarkGray);
-            tabItem.Content = new ElementMenu(Bookshelf.Books);
+            tabItem.Content = new ElementMenu(Bookshelf.Books, this);
 
             return tabItem;
         }
@@ -79,6 +89,47 @@ namespace MayProject
                 this.WindowState = WindowState.Maximized;
             else
                 this.WindowState = WindowState.Normal;
+        }
+
+        private void ContextMenuButton_MouseOver(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 178, 34, 34));
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = (sender as Button).DataContext as string;
+        }
+
+        private void ContextMenuButton_MouseLeave(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = string.Empty;
+        }
+
+        private void ButtonDeleteElement_Click(object sender, RoutedEventArgs e)
+        {
+            (((((sender as Button)
+                .Parent as Grid)
+                .TemplatedParent as ContextMenu)
+                .PlacementTarget as Border)
+                .DataContext as IElement).Delete();
+            Bookshelf.Books.Save();
+            (((sender as Button)
+                .Parent as Grid)
+                .TemplatedParent as ContextMenu).Visibility = Visibility.Collapsed;
+        }
+
+        private void ButtonAddIllustration_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ButtonRename_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
     }

@@ -35,22 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenGL.Net, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenGL.Net.0.4.2\lib\net35\OpenGL.Net.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpGL, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpGL.2.4.0.0\lib\net40\SharpGL.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpGL.SceneGraph, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpGL.2.4.0.0\lib\net40\SharpGL.SceneGraph.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpGL.WPF, Version=2.4.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpGL.WPF.2.4.0.0\lib\net40\SharpGL.WPF.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -90,6 +74,7 @@
     <Compile Include="DataModel\Bookshelf.cs" />
     <Compile Include="DataModel\Chapter.cs" />
     <Compile Include="DataModel\Character.cs" />
+    <Compile Include="DataModel\Event.cs" />
     <Compile Include="DataModel\Location.cs" />
     <Compile Include="DataModel\Note.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -117,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NewElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\NewEventWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +138,9 @@
     <Compile Include="Pages\NewElementWindow.xaml.cs">
       <DependentUpon>NewElementWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\NewEventWindow.xaml.cs">
+      <DependentUpon>NewEventWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NotePage.xaml.cs">
       <DependentUpon>NotePage.xaml</DependentUpon>
     </Compile>
@@ -173,7 +165,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -190,7 +181,7 @@
     <None Include="Resources\app_type_pharmacy_512px_GREY.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\plus.png" />
+    <Resource Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\save.png" />
@@ -203,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\park.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\NewEvent.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

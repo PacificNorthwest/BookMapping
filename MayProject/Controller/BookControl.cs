@@ -22,7 +22,15 @@ namespace MayProject.Controller
 
         public static void Load(this List<Book> books)
         {
-            Bookshelf.Books = XmlManager.Load(books.GetType()) as List<Book>;
+            try
+            {
+                Bookshelf.Books = XmlManager.Load(books.GetType()) as List<Book>;
+            }
+            catch(Exception ex)
+            {
+                Bookshelf.Books = new List<Book>();
+                throw new Exception("Failed to load Books list. New one created.");
+            }
         }
 
         public static void Add(this List<Book> books, string title)
