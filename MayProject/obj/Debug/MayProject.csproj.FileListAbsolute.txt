@@ -44,3 +44,7 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapPage.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\NewEventWindow.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\NewEventWindow.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Link.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Node.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Link.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Node.baml

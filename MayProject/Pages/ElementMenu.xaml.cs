@@ -30,6 +30,8 @@ namespace MayProject.Pages
     {
         private IEnumerable<IElement> _elements;
         private MainWindow _window;
+        private Book _book;
+
         public ElementMenu(IEnumerable<IElement> elements)
         {
             _elements = elements;
@@ -85,10 +87,15 @@ namespace MayProject.Pages
             label.Content = element.Title;
 
             plate.Content = CreateIllustrationGrid(image, label);
-            plate.Click += (object sender, RoutedEventArgs e) => { OpenElementPage(element); };
             plate.DataContext = element;
+            plate.Click += Plate_Click;
 
             return plate;
+        }
+
+        private void Plate_Click(object sender, RoutedEventArgs e)
+        {
+            OpenElementPage((sender as Button).DataContext as IElement);
         }
 
         private Button CreateTextPlate(IPlainTextElement element)
@@ -111,7 +118,7 @@ namespace MayProject.Pages
             panel.Children.Add(textBlock);
 
             plate.Content = CreateTextGrid(label, panel);
-            plate.Click += (object sender, RoutedEventArgs e) => { OpenElementPage(element); };
+            plate.Click += Plate_Click;
             plate.DataContext = element;
 
             return plate;
@@ -201,6 +208,7 @@ namespace MayProject.Pages
 
         private void PopulateSideMenu(Book book)
         {
+            _book = book;
             _window.SideMenu_Chapters.Children.Clear();
             _window.SideMenu_Characters.Children.Clear();
             _window.SideMenu_Locations.Children.Clear();
@@ -223,6 +231,9 @@ namespace MayProject.Pages
                 plate.MaxWidth = 80;
                 plate.FontSize = 18;
                 plate.Style = _window.FindResource("RoundCorners") as Style;
+                plate.Click -= Plate_Click;
+                plate.PreviewMouseMove += Plate_MouseMove;
+                plate.DataContext = character;
                 _window.SideMenu_Characters.Children.Add(plate);
             }
             foreach (Location location in book.Locations)
@@ -232,6 +243,9 @@ namespace MayProject.Pages
                 plate.MaxWidth = 80;
                 plate.FontSize = 18;
                 plate.Style = _window.FindResource("RoundCorners") as Style;
+                plate.Click -= Plate_Click;
+                plate.PreviewMouseMove += Plate_MouseMove;
+                plate.DataContext = location;
                 _window.SideMenu_Locations.Children.Add(plate);
             }
             Button relationsMap = new Button();
@@ -256,6 +270,37 @@ namespace MayProject.Pages
                 _window.SideMenu_Notes.Children.Add(plate);
             }
 
+        }
+
+        private void Plate_MouseMove(object sender, MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DataObject data = new DataObject();
+                data.SetData("IIllustratable", (sender as Button).DataContext as IIllustratable);
+
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Move | DragDropEffects.Copy);
+
+            }
+        }
+
+        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        {
+            base.OnGiveFeedback(e);
+            if (e.Effects.HasFlag(DragDropEffects.Copy))
+            {
+                Mouse.SetCursor(Cursors.Cross);
+            }
+            else if (e.Effects.HasFlag(DragDropEffects.Move))
+            {
+                Mouse.SetCursor(Cursors.Pen);
+            }
+            else
+            {
+                Mouse.SetCursor(Cursors.No);
+            }
+            e.Handled = true;
         }
 
         private void CreateNewElement()

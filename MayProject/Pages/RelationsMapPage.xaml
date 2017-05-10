@@ -7,5 +7,133 @@
              xmlns:proj="clr-namespace:MayProject"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1000" Background="Gray">
-    
+    <UserControl.Resources>
+        <proj:BorderClipConverter x:Key="BorderClipConverter"/>
+        <Style x:Key="PlainNode">
+            <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Black" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ContextMenuButton">
+            <Setter Property="Control.Background" Value="#80FFFFFF"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="90" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Control.FontSize" Value="25"/>
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+            <EventSetter Event="Control.MouseEnter" Handler="ContextMenuButton_MouseOver"/>
+            <EventSetter Event="Control.MouseLeave" Handler="ContextMenuButton_MouseLeave"/>
+        </Style>
+        <Style x:Key="CharacterPlateStyle">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="Border" BorderThickness="0" CornerRadius="180" Background="DarkGray">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Border.Clip>
+                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                                </MultiBinding>
+                            </Border.Clip>
+                            <Border.ContextMenu>
+                                <ContextMenu x:Name="BookContextMenu" Placement="MousePoint" VerticalOffset="-100" HorizontalOffset="-60" Height="120" Width="120">
+                                    <ContextMenu.Template>
+                                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"/>
+                                                    <RowDefinition Height="Auto" MinHeight="40"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Viewbox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                                    <TextBlock x:Name="ContextMenuDescription" Foreground="White"/>
+                                                </Viewbox>
+                                                <Button Name="ButtonLink" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 20" DataContext="Link" Click="ButtonLink_Click">
+                                                    <Button.Content>
+                                                        <Image Source="/MayProject;component/Resources/bond.png"/>
+                                                    </Button.Content>
+                                                </Button>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ContextMenu.Template>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LocationPlateStyle">
+            <Setter Property="Control.Background" Value="Transparent"/>
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border BorderBrush="Black" BorderThickness="0" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Border.ContextMenu>
+                                <ContextMenu x:Name="BookContextMenu" Placement="MousePoint" VerticalOffset="-100" HorizontalOffset="-60" Height="120" Width="120">
+                                    <ContextMenu.Template>
+                                        <ControlTemplate TargetType="{x:Type ContextMenu}">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"/>
+                                                    <RowDefinition Height="Auto" MinHeight="40"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                    <ColumnDefinition Width="40" MinWidth="40"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Viewbox HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+                                                    <TextBlock x:Name="ContextMenuDescription" Foreground="White"/>
+                                                </Viewbox>
+                                                <Button Name="ButtonLink" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 20" DataContext="Link" Click="ButtonLink_Click">
+                                                    <Button.Content>
+                                                        <Image Source="/MayProject;component/Resources/bond.png"/>
+                                                    </Button.Content>
+                                                </Button>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ContextMenu.Template>
+                                </ContextMenu>
+                            </Border.ContextMenu>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Control.IsMouseOver" Value="True">
+                    <Setter Property="Control.Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Canvas Name="Map" AllowDrop="True" Background="Transparent"/>
 </UserControl>

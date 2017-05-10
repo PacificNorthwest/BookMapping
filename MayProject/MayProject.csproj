@@ -61,6 +61,7 @@
     <Compile Include="Contracts\IIllustratable.cs" />
     <Compile Include="Contracts\IPlainTextElement.cs" />
     <Compile Include="Controller\BookControl.cs" />
+    <Compile Include="Controller\MapState.cs" />
     <Compile Include="Controller\XmlManager.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +98,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Link.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LocationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NewEventWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Node.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +141,9 @@
     <Compile Include="Pages\CategoriesMenu.xaml.cs">
       <DependentUpon>CategoriesMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Link.xaml.cs">
+      <DependentUpon>Link.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LocationPage.xaml.cs">
       <DependentUpon>LocationPage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +152,9 @@
     </Compile>
     <Compile Include="Pages\NewEventWindow.xaml.cs">
       <DependentUpon>NewEventWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Node.xaml.cs">
+      <DependentUpon>Node.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NotePage.xaml.cs">
       <DependentUpon>NotePage.xaml</DependentUpon>
@@ -178,9 +193,6 @@
     <None Include="Resources\2248-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\app_type_pharmacy_512px_GREY.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>
@@ -196,7 +208,7 @@
     <Resource Include="Resources\park.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\NewEvent.png" />
+    <Resource Include="Resources\bond.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

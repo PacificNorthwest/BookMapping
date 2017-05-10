@@ -83,6 +83,16 @@ namespace MayProject.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bond {
+            get {
+                object obj = ResourceManager.GetObject("bond", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap defaultIllustration {
             get {
                 object obj = ResourceManager.GetObject("defaultIllustration", resourceCulture);
