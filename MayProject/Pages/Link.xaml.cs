@@ -44,6 +44,7 @@ namespace MayProject.Pages
 
         public Link()
         {
+            InitializeComponent();
             LineSegment segment = new LineSegment(default(Point), true);
             PathFigure figure = new PathFigure(default(Point), new[] { segment }, false);
             PathGeometry geometry = new PathGeometry(new[] { figure });
@@ -55,14 +56,15 @@ namespace MayProject.Pages
                 figure, PathFigure.StartPointProperty, sourceBinding);
             BindingOperations.SetBinding(
                 segment, LineSegment.PointProperty, destinationBinding);
-            Content = new Path
+
+            Panel.Children.Add(new Path
             {
                 Data = geometry,
                 StrokeThickness = 2,
                 Stroke = Brushes.White,
                 MinWidth = 1,
                 MinHeight = 1
-            };
+            });
         }
     }
 }

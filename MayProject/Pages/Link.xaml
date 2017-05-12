@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MayProject.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
+    <Grid Name="Panel">
+        <TextBox Name="Label" Text="test" Height="Auto" Width="Auto" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
