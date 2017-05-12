@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Name="Panel">
-        <TextBox Name="Label" Text="test" Height="Auto" Width="Auto" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Name="Label" Height="Auto" Width="5" HorizontalAlignment="Left" Background="Transparent" BorderThickness="0" FontSize="25" TextChanged="Label_TextChanged"/>
     </Grid>
 </UserControl>

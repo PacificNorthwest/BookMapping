@@ -116,11 +116,11 @@ namespace MayProject.Pages
                                     Source = sender as Node,
                                     Path = new PropertyPath(Node.AnchorPointProperty)
                                 });
-                link.Label.SetBinding(Link.MarginProperty,
+                link.Label.SetBinding(TextBox.MarginProperty,
                                 new Binding()
                                 {
-                                    Source = _focusedCharacter,
-                                    Path = new PropertyPath(Node.AnchorPointProperty),
+                                    Source = link,
+                                    Path = new PropertyPath(Link.LabelPositionProperty),
                                     Converter = new AnchorPointToMarginConverter()
                                 });
                 Map.Children.Add(link);
