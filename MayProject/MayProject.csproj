@@ -79,6 +79,8 @@
     <Compile Include="DataModel\Event.cs" />
     <Compile Include="DataModel\Location.cs" />
     <Compile Include="DataModel\Note.cs" />
+    <Compile Include="DataModel\RelationsMap.cs" />
+    <Compile Include="DataModel\XmlSerializableDictionary.cs" />
     <Compile Include="LinkLabelPositionConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

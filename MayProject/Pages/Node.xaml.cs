@@ -38,7 +38,6 @@ namespace MayProject.Pages
         {
             InitializeComponent();
             mCanvas = canvas;
-            //this.LayoutUpdated += Node_LayoutUpdated;
 
             Grid.SetRow(image, 0);
             Grid.SetColumn(image, 0);
@@ -46,12 +45,7 @@ namespace MayProject.Pages
             TitleContainer.Child = title;
         }
 
-        void Node_LayoutUpdated(object sender, EventArgs e)
-        {
-            Size size = RenderSize;
-            Point ofs = new Point(size.Width / 2, size.Height / 2);
-            AnchorPoint = TransformToVisual(this.mCanvas).Transform(ofs);
-        }
+        public Node() : this(new Canvas(), new Button(), new TextBlock()) { }
 
         public void UpdateAnchor()
         {
@@ -59,13 +53,5 @@ namespace MayProject.Pages
             Point ofs = new Point(size.Width / 2, size.Height / 2);
             AnchorPoint = TransformToVisual(this.mCanvas).Transform(ofs);
         }
-
-        //protected override void OnRender(DrawingContext drawingContext)
-        //{
-        //    drawingContext.DrawEllipse(
-        //        Brushes.Red,
-        //        null,
-        //        new Point(Width / 2, Height / 2), Width / 2, Height / 2);
-        //}
     }
 }

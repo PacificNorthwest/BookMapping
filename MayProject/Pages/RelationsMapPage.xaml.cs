@@ -34,6 +34,46 @@ namespace MayProject.Pages
         {
             _book = book;
             InitializeComponent();
+            LoadMap(_book.RelationsMap);
+        }
+
+        private void LoadMap(RelationsMap map)
+        {
+            List<IIllustratable> elements = new List<IIllustratable>(_book.Characters.Count +
+                                                                     _book.Locations.Count);
+            elements.AddRange(_book.Characters);
+            elements.AddRange(_book.Locations);
+
+            foreach (string title in map.Elements)
+            {
+                IIllustratable element = elements.Find(e => e.Title == title);
+                Node node = NodeFactory(element);
+                node.DataContext = element;
+                Point position = map.Coordinates[title];
+                Canvas.SetLeft(node, position.X);
+                Canvas.SetTop(node, position.Y);
+                Map.Children.Add(node);
+                node.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                node.Arrange(new Rect(0, 0, node.DesiredSize.Width, node.DesiredSize.Height));
+                node.AnchorPoint = new Point(position.X + node.ActualWidth/2,
+                                             position.Y + node.ActualHeight/2);
+            }
+
+            foreach (LinkInfo info in map.Links)
+            {
+                IElement sourceElement = elements.Find(e => e.Title == info.SourceNodeName);
+                IElement destinationElement = elements.Find(e => e.Title == info.DestinationNodeName);
+                Node sourceNode = Map.Children.Cast<UIElement>().ToList()
+                                       .Where(c => c is Node).ToList()
+                                       .Find(n => ((n as Node).DataContext as IElement)
+                                                    .Title == sourceElement.Title) as Node;
+                Node destinationNode = Map.Children.Cast<UIElement>().ToList()
+                                       .Where(c => c is Node).ToList()
+                                       .Find(n => ((n as Node).DataContext as IElement)
+                                                    .Title == destinationElement.Title) as Node;
+
+                LinkNodes(sourceNode, destinationNode, info.LabelText);
+            }
         }
 
         protected override void OnDrop(DragEventArgs e)
@@ -57,6 +97,7 @@ namespace MayProject.Pages
                 else
                     e.Effects = DragDropEffects.Move;
                 e.Handled = true;
+                SaveMap();
             }
         }
 
@@ -89,6 +130,63 @@ namespace MayProject.Pages
             return node;
         }
 
+        private void LinkNodes(Node sourceNode, Node destinationNode, string label)
+        {
+            Link link = new Link();
+            link.DataContext = new Node[] { sourceNode, destinationNode };
+            link.SetBinding(Link.SourceProperty,
+                            new Binding()
+                            {
+                                Source = sourceNode,
+                                Path = new PropertyPath(Node.AnchorPointProperty)
+                            });
+            link.SetBinding(Link.DestinationProperty,
+                            new Binding()
+                            {
+                                Source = destinationNode,
+                                Path = new PropertyPath(Node.AnchorPointProperty)
+                            });
+            link.Label.SetBinding(TextBox.MarginProperty,
+                            new Binding()
+                            {
+                                Source = link,
+                                Path = new PropertyPath(Link.LabelPositionProperty),
+                                Converter = new AnchorPointToMarginConverter()
+                            });
+            link.Label.Text = label;
+            Map.Children.Add(link);
+        }
+
+        private void SaveMap()
+        {
+            _book.RelationsMap.Elements.Clear();
+            _book.RelationsMap.Coordinates.Clear();
+            _book.RelationsMap.Links.Clear();
+
+            foreach (UIElement element in Map.Children)
+            {
+                if (element is Node)
+                {
+                    _book.RelationsMap.Elements.Add(((element as Node).DataContext as IElement).Title);
+                    _book.RelationsMap.Coordinates.Add(((element as Node).DataContext as IElement).Title,
+                                                        new Point((element as Node).AnchorPoint.X - (element as Node).ActualWidth / 2,
+                                                                  (element as Node).AnchorPoint.Y - (element as Node).ActualHeight / 2));
+                }
+                else if (element is Link)
+                    _book.RelationsMap.Links.Add(new LinkInfo
+                                                {
+                                                     SourceNodeName = (((element as Link)
+                                                                         .DataContext as Node[])[0]
+                                                                         .DataContext as IElement).Title,
+                                                     DestinationNodeName = (((element as Link)
+                                                                         .DataContext as Node[])[1]
+                                                                         .DataContext as IElement).Title,
+                                                                 LabelText = (element as Link).Label.Text
+                                                });
+            }
+            Bookshelf.Books.Save();
+        }
+
         private void Node_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             _focusedCharacter = sender as Node;
@@ -97,36 +195,17 @@ namespace MayProject.Pages
         private void Node_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             (sender as Node).ReleaseMouseCapture();
+            SaveMap();
+            Bookshelf.Books.Save();
         }
 
         private void Node_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_currentState == MapState.Link)
             {
-                Link link = new Link();
-                link.SetBinding(Link.SourceProperty,
-                                new Binding()
-                                {
-                                    Source = _focusedCharacter,
-                                    Path = new PropertyPath(Node.AnchorPointProperty)
-                                });
-                link.SetBinding(Link.DestinationProperty,
-                                new Binding()
-                                {
-                                    Source = sender as Node,
-                                    Path = new PropertyPath(Node.AnchorPointProperty)
-                                });
-                link.Label.SetBinding(TextBox.MarginProperty,
-                                new Binding()
-                                {
-                                    Source = link,
-                                    Path = new PropertyPath(Link.LabelPositionProperty),
-                                    Converter = new AnchorPointToMarginConverter()
-                                });
-                Map.Children.Add(link);
+                LinkNodes(_focusedCharacter, sender as Node, string.Empty);
                 _currentState = MapState.Normal;
             }
-
             _m_start = e.GetPosition(Map);
             _m_startOffset = new Vector(((sender as Node).RenderTransform as TranslateTransform).X,
                                         ((sender as Node).RenderTransform as TranslateTransform).Y);

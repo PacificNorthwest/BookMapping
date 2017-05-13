@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using MayProject.Contracts;
 using System.Drawing;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Markup;
 
 namespace MayProject.DataModel
 {
@@ -16,6 +19,7 @@ namespace MayProject.DataModel
         public List<Location> Locations { get; set; } = new List<Location>();
         public List<Note> Notes { get; set; } = new List<Note>();
         public List<Chapter> Chapters { get; set; } = new List<Chapter>();
+        public RelationsMap RelationsMap { get; set; } = new RelationsMap();
         public List<Event> Events { get; set; } = new List<Event>();
         public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
 

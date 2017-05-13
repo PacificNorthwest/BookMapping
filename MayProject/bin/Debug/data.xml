@@ -60,6 +60,77 @@
         <Text>Hello world from first chapter!</Text>
       </Chapter>
     </Chapters>
+    <RelationsMap>
+      <Elements>
+        <string>Hermione</string>
+        <string>Malfoy</string>
+        <string>Victor Cram</string>
+        <string>Voldemort</string>
+      </Elements>
+      <Coordinates>
+        <item>
+          <key>
+            <string>Hermione</string>
+          </key>
+          <value>
+            <Point>
+              <X>128</X>
+              <Y>163.71999999999997</Y>
+            </Point>
+          </value>
+        </item>
+        <item>
+          <key>
+            <string>Malfoy</string>
+          </key>
+          <value>
+            <Point>
+              <X>643</X>
+              <Y>100.72</Y>
+            </Point>
+          </value>
+        </item>
+        <item>
+          <key>
+            <string>Victor Cram</string>
+          </key>
+          <value>
+            <Point>
+              <X>309</X>
+              <Y>409.72</Y>
+            </Point>
+          </value>
+        </item>
+        <item>
+          <key>
+            <string>Voldemort</string>
+          </key>
+          <value>
+            <Point>
+              <X>577</X>
+              <Y>370.72</Y>
+            </Point>
+          </value>
+        </item>
+      </Coordinates>
+      <Links>
+        <LinkInfo>
+          <SourceNodeName>Hermione</SourceNodeName>
+          <DestinationNodeName>Malfoy</DestinationNodeName>
+          <LabelText>Lovers</LabelText>
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Victor Cram</SourceNodeName>
+          <DestinationNodeName>Hermione</DestinationNodeName>
+          <LabelText>Friends</LabelText>
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Victor Cram</SourceNodeName>
+          <DestinationNodeName>Voldemort</DestinationNodeName>
+          <LabelText>Lovers</LabelText>
+        </LinkInfo>
+      </Links>
+    </RelationsMap>
     <Events>
       <Event>
         <Title>Voldemort's death</Title>
@@ -98,6 +169,11 @@
       </Note>
     </Notes>
     <Chapters />
+    <RelationsMap>
+      <Elements />
+      <Coordinates />
+      <Links />
+    </RelationsMap>
     <Events />
     <Illustrations />
   </Book>
