@@ -74,8 +74,8 @@
           </key>
           <value>
             <Point>
-              <X>128</X>
-              <Y>163.71999999999997</Y>
+              <X>321</X>
+              <Y>80.719999999999985</Y>
             </Point>
           </value>
         </item>
@@ -85,8 +85,8 @@
           </key>
           <value>
             <Point>
-              <X>643</X>
-              <Y>100.72</Y>
+              <X>579</X>
+              <Y>74.72</Y>
             </Point>
           </value>
         </item>
@@ -96,8 +96,8 @@
           </key>
           <value>
             <Point>
-              <X>309</X>
-              <Y>409.72</Y>
+              <X>237</X>
+              <Y>398.72</Y>
             </Point>
           </value>
         </item>
@@ -107,8 +107,8 @@
           </key>
           <value>
             <Point>
-              <X>577</X>
-              <Y>370.72</Y>
+              <X>735</X>
+              <Y>396.72</Y>
             </Point>
           </value>
         </item>
@@ -127,6 +127,11 @@
         <LinkInfo>
           <SourceNodeName>Victor Cram</SourceNodeName>
           <DestinationNodeName>Voldemort</DestinationNodeName>
+          <LabelText>Lovers</LabelText>
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Voldemort</SourceNodeName>
+          <DestinationNodeName>Malfoy</DestinationNodeName>
           <LabelText>Lovers</LabelText>
         </LinkInfo>
       </Links>

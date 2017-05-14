@@ -57,7 +57,7 @@ namespace MayProject.Pages
                     }
                 case "Relations":
                     {
-                        PageSwitcher.Switch(new RelationsMapPage(_book));
+                        PageSwitcher.Switch(new EventsMapPage(_book));
                         break;
                     }
             }

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="MayProject.Pages.EventsMapPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MayProject.Pages"
+             xmlns:proj="clr-namespace:MayProject"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1000">
+
+    <Grid>
+        <Canvas Name="Map" AllowDrop="True" Background="Transparent"/>
+        <Button Name="NewEventButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0, 10, 10" MaxWidth="80" Click="NewEventButton_Click">
+            <Button.Content>
+                <Image Source="/MayProject;component/Resources/plus.png"/>
+            </Button.Content>
+        </Button>
+    </Grid>
+</UserControl>

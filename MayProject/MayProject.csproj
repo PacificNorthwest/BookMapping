@@ -81,6 +81,7 @@
     <Compile Include="DataModel\Note.cs" />
     <Compile Include="DataModel\RelationsMap.cs" />
     <Compile Include="DataModel\XmlSerializableDictionary.cs" />
+    <Compile Include="EventTitlePositionConverter.cs" />
     <Compile Include="LinkLabelPositionConverter.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -99,6 +100,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CategoriesMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EventNode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\EventsMapPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -144,6 +153,12 @@
     </Compile>
     <Compile Include="Pages\CategoriesMenu.xaml.cs">
       <DependentUpon>CategoriesMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventNode.xaml.cs">
+      <DependentUpon>EventNode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\EventsMapPage.xaml.cs">
+      <DependentUpon>EventsMapPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Link.xaml.cs">
       <DependentUpon>Link.xaml</DependentUpon>

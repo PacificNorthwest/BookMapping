@@ -24,10 +24,12 @@ namespace MayProject.Pages
     public partial class NewEventWindow : Window
     {
         private Book _book;
+        public Event CreatedEvent { get; set; }
 
         public NewEventWindow(Book book)
         {
             _book = book;
+            CreatedEvent = null;
             InitializeComponent();
             Visualize();
         }
@@ -131,12 +133,11 @@ namespace MayProject.Pages
             Location location = _book.Locations.Find(loc => loc.Title == (((LocationsList.SelectedItem as ListBoxItem)
                                                                             .Content as Grid)
                                                                             .DataContext as string));
-            _book.Events.Add(new Event(EventTitle.Text,
+            CreatedEvent = new Event(EventTitle.Text,
                                        EventDescription.Text,
                                        ChapterName.Text,
                                        characters,
-                                       location));
-            Bookshelf.Books.Save();
+                                       location);
             ClearFields();
             this.Close();
         }
