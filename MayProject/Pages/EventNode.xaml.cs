@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MayProject.DataModel;
 
 namespace MayProject.Pages
 {
@@ -20,9 +21,38 @@ namespace MayProject.Pages
     /// </summary>
     public partial class EventNode : UserControl
     {
-        public EventNode()
+        public static readonly DependencyProperty AnchorPointProperty =
+        DependencyProperty.Register(
+            "AnchorPoint", typeof(Point), typeof(EventNode),
+                new FrameworkPropertyMetadata(new Point(0, 0),
+                FrameworkPropertyMetadataOptions.AffectsMeasure));
+
+        public Point AnchorPoint
+        {
+            get { return (Point)GetValue(AnchorPointProperty); }
+            set { SetValue(AnchorPointProperty, value); }
+        }
+
+        private Canvas mCanvas;
+
+        public EventNode(Canvas canvas, string title, string description, List<Character> characters, Location location, string time)
         {
             InitializeComponent();
+            mCanvas = canvas;
+            EventTitle.Text = title;
+            EventDescription.Text = description;
+            EventCharacters.Text = characters
+                                      .Select(c => c.Title).ToList()
+                                      .Aggregate((current, next) => $"{current}\n{next}");
+            EventLocation.Text = location.Title;
+            EventTime.Text = time;
+        }
+
+        public void UpdateAnchor()
+        {
+            Size size = RenderSize;
+            Point ofs = new Point((size.Width / 2) + 50, (size.Height / 2) + 120);
+            AnchorPoint = TransformToVisual(this.mCanvas).Transform(ofs);
         }
     }
 }

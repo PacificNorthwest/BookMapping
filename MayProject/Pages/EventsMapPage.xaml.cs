@@ -23,6 +23,8 @@ namespace MayProject.Pages
     /// </summary>
     public partial class EventsMapPage : UserControl
     {
+        private MapState _currentState;
+        private EventNode _focusedNode;
         private Book _book;
         private Point _m_start;
         private Vector _m_startOffset;
@@ -45,18 +47,50 @@ namespace MayProject.Pages
 
         private void AddEvent(Event storyEvent)
         {
-            EventNode node = new EventNode();
-            node.EventTitle.Text = storyEvent.Title;
-            node.EventDescription.Text = storyEvent.Description;
-            node.EventCharacters.Text = storyEvent.Characters
-                                                  .Select(c => c.Title).ToList()
-                                                  .Aggregate((current, next) => $"{current}\n{next}");
-            node.EventLocation.Text = storyEvent.Location.Title;
-            node.EventTime.Text = "Whenever";
+            EventNode node = new EventNode(Map,
+                                           storyEvent.Title,
+                                           storyEvent.Description,
+                                           storyEvent.Characters,
+                                           storyEvent.Location,
+                                           "12:00");
+            node.ContextMenu = this.FindResource("NodeContextMenu") as ContextMenu;
             node.MouseDown += Node_PreviewMouseDown;
             node.PreviewMouseMove += Node_PreviewMouseMove;
             node.PreviewMouseUp += Node_PreviewMouseUp;
+            node.MouseRightButtonDown += Node_MouseRightButtonDown;
             Map.Children.Add(node);
+        }
+
+        private void LinkNodes(EventNode sourceNode, EventNode destinationNode, string label)
+        {
+            Link link = new Link();
+            link.DataContext = new EventNode[] { sourceNode, destinationNode };
+            link.SetBinding(Link.SourceProperty,
+                            new Binding()
+                            {
+                                Source = sourceNode,
+                                Path = new PropertyPath(EventNode.AnchorPointProperty)
+                            });
+            link.SetBinding(Link.DestinationProperty,
+                            new Binding()
+                            {
+                                Source = destinationNode,
+                                Path = new PropertyPath(EventNode.AnchorPointProperty)
+                            });
+            link.Label.SetBinding(TextBox.MarginProperty,
+                            new Binding()
+                            {
+                                Source = link,
+                                Path = new PropertyPath(Link.LabelPositionProperty),
+                                Converter = new AnchorPointToMarginConverter()
+                            });
+            link.Label.Text = label;
+            Map.Children.Add(link);
+        }
+
+        private void Node_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _focusedNode = sender as EventNode;
         }
 
         private void Node_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -66,6 +100,11 @@ namespace MayProject.Pages
 
         private void Node_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (_currentState == MapState.Link)
+            {
+                LinkNodes(_focusedNode, sender as EventNode, string.Empty);
+                _currentState = MapState.Normal;
+            }
             _m_start = e.GetPosition(Map);
             _m_startOffset = new Vector(((sender as EventNode).RenderTransform as TranslateTransform).X,
                                         ((sender as EventNode).RenderTransform as TranslateTransform).Y);
@@ -80,7 +119,29 @@ namespace MayProject.Pages
 
                 ((sender as EventNode).RenderTransform as TranslateTransform).X = _m_startOffset.X + offset.X;
                 ((sender as EventNode).RenderTransform as TranslateTransform).Y = _m_startOffset.Y + offset.Y;
+                (sender as EventNode).UpdateAnchor();
             }
+        }
+
+        private void ContextMenuButton_MouseOver(object sender, RoutedEventArgs e)
+        {
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = (sender as Button).DataContext as string;
+        }
+
+        private void ContextMenuButton_MouseLeave(object sender, RoutedEventArgs e)
+        {
+            ((((sender as Button).Parent as Grid).Children
+                .Cast<UIElement>()
+                .First(x => x.GetType() == typeof(Viewbox)) as Viewbox).Child as TextBlock)
+                .Text = string.Empty;
+        }
+
+        private void ButtonLink_Click(object sender, RoutedEventArgs e)
+        {
+            _currentState = MapState.Link;
         }
     }
 }
