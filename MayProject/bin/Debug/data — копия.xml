@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <ArrayOfBook xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Book>
     <Title>Harry Potter</Title>
@@ -60,54 +60,7 @@
         <Text>Hello world from first chapter!</Text>
       </Chapter>
     </Chapters>
-    <Events>
-      <Event>
-        <Title>Voldemort's death</Title>
-        <Description>Voldemort killed by Harry Potter during the Hogwarts battle</Description>
-        <Time>12:00</Time>
-        <Characters>
-          <Character>
-            <Title>Harry Potter</Title>
-            <Description>Main Character</Description>
-            <Locations />
-            <Illustrations />
-          </Character>
-          <Character>
-            <Title>Voldemort</Title>
-            <Locations />
-            <Illustrations />
-          </Character>
-        </Characters>
-        <Location>
-          <Title>Hogwarts</Title>
-          <Characters />
-          <Illustrations />
-        </Location>
-      </Event>
-      <Event>
-        <Title>Hermione's death</Title>
-        <Description>Hermione's death during the ogre fight scene</Description>
-        <Time>12:00</Time>
-        <Characters>
-          <Character>
-            <Title>Harry Potter</Title>
-            <Description>Main Character</Description>
-            <Locations />
-            <Illustrations />
-          </Character>
-          <Character>
-            <Title>Hermione</Title>
-            <Locations />
-            <Illustrations />
-          </Character>
-        </Characters>
-        <Location>
-          <Title>Hogwarts</Title>
-          <Characters />
-          <Illustrations />
-        </Location>
-      </Event>
-    </Events>
+    <Events />
     <RelationsMap>
       <Elements>
         <string>Hermione</string>
@@ -202,41 +155,9 @@
       </Links>
     </RelationsMap>
     <EventsMap>
-      <Elements>
-        <string>Voldemort's death</string>
-        <string>Hermione's death</string>
-      </Elements>
-      <Coordinates>
-        <item>
-          <key>
-            <string>Voldemort's death</string>
-          </key>
-          <value>
-            <Point>
-              <X>70</X>
-              <Y>-7</Y>
-            </Point>
-          </value>
-        </item>
-        <item>
-          <key>
-            <string>Hermione's death</string>
-          </key>
-          <value>
-            <Point>
-              <X>515</X>
-              <Y>-19.279999999999973</Y>
-            </Point>
-          </value>
-        </item>
-      </Coordinates>
-      <Links>
-        <LinkInfo>
-          <SourceNodeName>Voldemort's death</SourceNodeName>
-          <DestinationNodeName>Hermione's death</DestinationNodeName>
-          <LabelText />
-        </LinkInfo>
-      </Links>
+      <Elements />
+      <Coordinates />
+     <Links />
     </EventsMap>
     <Illustrations />
   </Book>

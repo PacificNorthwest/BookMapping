@@ -19,8 +19,9 @@ namespace MayProject.DataModel
         public List<Location> Locations { get; set; } = new List<Location>();
         public List<Note> Notes { get; set; } = new List<Note>();
         public List<Chapter> Chapters { get; set; } = new List<Chapter>();
-        public RelationsMap RelationsMap { get; set; } = new RelationsMap();
         public List<Event> Events { get; set; } = new List<Event>();
+        public Map RelationsMap { get; set; } = new Map();
+        public Map EventsMap { get; set; } = new Map();
         public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
 
         public Book(string title) { Title = title; }

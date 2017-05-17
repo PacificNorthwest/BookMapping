@@ -29,7 +29,6 @@ namespace MayProject.Pages
     public partial class ElementMenu : UserControl
     {
         private IEnumerable<IElement> _elements;
-        private MainWindow _window;
         private Book _book;
 
         public ElementMenu(IEnumerable<IElement> elements)
@@ -39,16 +38,23 @@ namespace MayProject.Pages
             Visualize();
         }
 
-        public ElementMenu(IEnumerable<IElement> elements, MainWindow window)
+        public ElementMenu(Book book, IEnumerable<IElement> elements)
         {
             _elements = elements;
-            _window = window;
+            _book = book;
             InitializeComponent();
             Visualize();
         }
 
         private void Visualize()
         {
+            if (_elements.GetType().GenericTypeArguments[0].Name != "Book")
+            {
+                MainWindow.SideMenu.Visibility = Visibility.Visible;
+                PopulateSideMenu();
+            }
+            else
+               MainWindow.SideMenu.Visibility = Visibility.Collapsed;
             Container.Children.Clear();
             foreach (IElement element in _elements)
             {
@@ -58,6 +64,71 @@ namespace MayProject.Pages
                     Container.Children.Add(CreateTextPlate(element as IPlainTextElement));
             }
             Container.Children.Add(CreateNewElementPlate());
+        }
+
+        private void PopulateSideMenu()
+        {
+            var menu = new BookSideMenu();
+            menu.SideMenu_Chapters.Children.Clear();
+            menu.SideMenu_Characters.Children.Clear();
+            menu.SideMenu_Locations.Children.Clear();
+            menu.SideMenu_Maps.Children.Clear();
+            menu.SideMenu_Notes.Children.Clear();
+
+            foreach (Chapter chapter in _book.Chapters)
+            {
+                Button plate = new Button();
+                plate.Width = plate.Height = 25;
+                plate.Margin = new Thickness(2);
+                plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
+                plate.Style = menu.FindResource("RoundCorners") as Style;
+                plate.Content = _book.Chapters.IndexOf(chapter) + 1;
+                menu.SideMenu_Chapters.Children.Add(plate);
+            }
+            foreach (Character character in _book.Characters)
+            {
+                Button plate = CreateIllustrationPlate(character, menu.FindResource("RoundCorners") as Style);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.FontSize = 18;
+                plate.Click -= Plate_Click;
+                plate.DataContext = character;
+                menu.SideMenu_Characters.Children.Add(plate);
+            }
+            foreach (Location location in _book.Locations)
+            {
+                Button plate = CreateIllustrationPlate(location, menu.FindResource("RoundCorners") as Style);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.FontSize = 18;
+                plate.Click -= Plate_Click;
+                plate.DataContext = location;
+                menu.SideMenu_Locations.Children.Add(plate);
+            }
+            Button relationsMap = new Button();
+            relationsMap.Content = "Relations Map";
+            relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            relationsMap.FontSize = 18;
+            relationsMap.Margin = new Thickness(2);
+            Button eventsMap = new Button();
+            eventsMap.Content = "Events Map";
+            eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            eventsMap.FontSize = 18;
+            eventsMap.Margin = new Thickness(2);
+            menu.SideMenu_Maps.Children.Add(relationsMap);
+            menu.SideMenu_Maps.Children.Add(eventsMap);
+
+            foreach (Note note in _book.Notes)
+            {
+                Button plate = new Button();
+                plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                plate.Content = note.Title;
+                plate.FontSize = 18;
+                menu.SideMenu_Notes.Children.Add(plate);
+            }
+
+            MainWindow.SideMenu.Content = menu;
+
         }
 
         private Button CreateIllustrationPlate(IIllustratable element)
@@ -159,7 +230,7 @@ namespace MayProject.Pages
             Grid.SetRow(image, 0);
             Grid.SetColumn(image, 0);
             Grid.SetRow(viewbox, 1);
-            Grid.SetColumn(viewbox, 1);
+            Grid.SetColumn(viewbox, 0);
 
             grid.Children.Add(image);
             grid.Children.Add(viewbox);
@@ -187,13 +258,68 @@ namespace MayProject.Pages
             return grid;
         }
 
+        private Button CreateIllustrationPlate(IIllustratable element, Style style)
+        {
+            BitmapImage img;
+            if (element.Illustrations.Count > 0)
+                img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
+            else
+            {
+                if (element is Character)
+                    img = Properties.Resources.avatar.ToBitmapImage();
+                else if (element is Location)
+                    img = Properties.Resources.park.ToBitmapImage();
+                else
+                    img = Properties.Resources.defaultIllustration.ToBitmapImage();
+            }
+            Button illustration = new Button();
+            illustration.Style = style;
+
+            Image image = new Image();
+            image.Source = img;
+            illustration.Content = image;
+
+            Label label = new Label();
+            label.VerticalAlignment = VerticalAlignment.Center;
+            label.HorizontalAlignment = HorizontalAlignment.Left;
+            label.Content = element.Title;
+
+            Button plate = new Button()
+            {
+                Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                BorderThickness = new Thickness(0)
+            };
+            plate.Content = CreateIllustrationGrid(illustration, label);
+            plate.DataContext = element;
+            plate.Click += Plate_Click;
+
+            return plate;
+        }
+
+        private Grid CreateIllustrationGrid(Button image, Label label)
+        {
+            Grid grid = new Grid();
+            Viewbox viewbox = new Viewbox();
+            viewbox.Child = label;
+            RowDefinition firstRow = new RowDefinition();
+            firstRow.Height = GridLength.Auto;
+            RowDefinition secondRow = new RowDefinition();
+            secondRow.Height = new GridLength(0.3, GridUnitType.Star);
+            grid.RowDefinitions.Add(firstRow);
+            grid.RowDefinitions.Add(secondRow);
+            Grid.SetRow(image, 0);
+            Grid.SetColumn(image, 0);
+            Grid.SetRow(viewbox, 1);
+            Grid.SetColumn(viewbox, 0);
+
+            grid.Children.Add(image);
+            grid.Children.Add(viewbox);
+
+            return grid;
+        }
+
         private void OpenElementPage(IElement element)
         {
-            if (_window != null && element is Book)
-            {
-                _window.SideMenu.Visibility = Visibility.Visible;
-                PopulateSideMenu(element as Book);
-            }
                 if (element is Book)
                 PageSwitcher.Switch(new CategoriesMenu(element as Book));
             if (element is Note)
@@ -206,71 +332,6 @@ namespace MayProject.Pages
                 PageSwitcher.Switch(new LocationPage(_elements, element));
         }
 
-        private void PopulateSideMenu(Book book)
-        {
-            _book = book;
-            _window.SideMenu_Chapters.Children.Clear();
-            _window.SideMenu_Characters.Children.Clear();
-            _window.SideMenu_Locations.Children.Clear();
-            _window.SideMenu_Maps.Children.Clear();
-            _window.SideMenu_Notes.Children.Clear();
-
-            foreach (Chapter chapter in book.Chapters)
-            {
-                Button plate = new Button();
-                plate.MaxWidth = 50;
-                plate.Margin = new Thickness(2);
-                plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
-                plate.Content = book.Chapters.IndexOf(chapter) + 1;
-                _window.SideMenu_Chapters.Children.Add(plate);
-            }
-            foreach (Character character in book.Characters)
-            {
-                Button plate = CreateIllustrationPlate(character);
-                plate.Margin = new Thickness(2);
-                plate.MaxWidth = 80;
-                plate.FontSize = 18;
-                plate.Style = _window.FindResource("RoundCorners") as Style;
-                plate.Click -= Plate_Click;
-                plate.PreviewMouseMove += Plate_MouseMove;
-                plate.DataContext = character;
-                _window.SideMenu_Characters.Children.Add(plate);
-            }
-            foreach (Location location in book.Locations)
-            {
-                Button plate = CreateIllustrationPlate(location);
-                plate.Margin = new Thickness(2);
-                plate.MaxWidth = 80;
-                plate.FontSize = 18;
-                plate.Style = _window.FindResource("RoundCorners") as Style;
-                plate.Click -= Plate_Click;
-                plate.PreviewMouseMove += Plate_MouseMove;
-                plate.DataContext = location;
-                _window.SideMenu_Locations.Children.Add(plate);
-            }
-            Button relationsMap = new Button();
-            relationsMap.Content = "Relations Map";
-            relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-            relationsMap.FontSize = 18;
-            relationsMap.Margin = new Thickness(2);
-            Button eventsMap = new Button();
-            eventsMap.Content = "Events Map";
-            eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-            eventsMap.FontSize = 18;
-            eventsMap.Margin = new Thickness(2);
-            _window.SideMenu_Maps.Children.Add(relationsMap);
-            _window.SideMenu_Maps.Children.Add(eventsMap);
-
-            foreach (Note note in book.Notes)
-            {
-                Button plate = new Button();
-                plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-                plate.Content = note.Title;
-                plate.FontSize = 18;
-                _window.SideMenu_Notes.Children.Add(plate);
-            }
-
-        }
 
         private void Plate_MouseMove(object sender, MouseEventArgs e)
         {
@@ -281,7 +342,6 @@ namespace MayProject.Pages
                 data.SetData("IIllustratable", (sender as Button).DataContext as IIllustratable);
 
                 DragDrop.DoDragDrop(this, data, DragDropEffects.Move | DragDropEffects.Copy);
-
             }
         }
 

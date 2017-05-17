@@ -17,7 +17,7 @@ namespace MayProject.DataModel
     }
 
     [Serializable]
-    public class RelationsMap
+    public class Map
     {
         public List<string> Elements { get; set; } = new List<string>();
         public XmlSerializableDictionary<string, Point> Coordinates { get; set; } = 

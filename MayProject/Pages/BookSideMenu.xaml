@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="MayProject.Pages.BookSideMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MayProject.Pages"
+             xmlns:proj="clr-namespace:MayProject"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="300" Background="Transparent">
+    <UserControl.Resources>
+        <proj:BorderClipConverter x:Key="BorderClipConverter"/>
+        <Style x:Key="RoundCorners">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="180" Background="DarkGray">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Border.Clip>
+                                <MultiBinding Converter="{StaticResource BorderClipConverter}">
+                                    <Binding Path="ActualWidth"
+                        RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="ActualHeight"
+                        RelativeSource="{RelativeSource Self}"/>
+                                    <Binding Path="CornerRadius"
+                        RelativeSource="{RelativeSource Self}"/>
+                                </MultiBinding>
+                            </Border.Clip>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="10,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Chapters" Grid.Row="0" FontSize="18" VerticalAlignment="Top"/>
+        <UniformGrid Name="SideMenu_Chapters" Columns="4" Grid.Row="1"/>
+        <TextBlock Text="Characters" Grid.Row="2" FontSize="18"/>
+        <UniformGrid Name="SideMenu_Characters" Columns="2" Grid.Row="3"/>
+        <TextBlock Text="Locations" Grid.Row="4" FontSize="18"/>
+        <UniformGrid Name="SideMenu_Locations" Columns="2" Grid.Row="5"/>
+        <TextBlock Text="Maps" Grid.Row="6" FontSize="18"/>
+        <StackPanel Name="SideMenu_Maps" Grid.Row="7"/>
+        <TextBlock Text="Notes" Grid.Row="8" FontSize="18"/>
+        <StackPanel Name="SideMenu_Notes" Grid.Row="9"/>
+    </Grid>
+</UserControl>

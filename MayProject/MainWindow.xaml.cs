@@ -24,6 +24,13 @@ namespace MayProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static ScrollViewer SideMenu { get; set; } =
+                                    new ScrollViewer() { Width = 190,
+                                                         VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                                                         Visibility = Visibility.Collapsed };
+        public static Grid ContentPanel { get; set; } = new Grid();
+        private static Grid _tabContent;
+
         public MainWindow()
         {
             try
@@ -37,6 +44,7 @@ namespace MayProject
             finally
             {
                 InitializeComponent();
+                _tabContent = TabContent(ContentPanel);
                 PageSwitcher.mainWindow = this;
                 this.WorkArea.Items.Add(NewTab());
             }
@@ -47,7 +55,9 @@ namespace MayProject
             TabItem tabItem = new TabItem();
             tabItem.Header = "New tab";
             tabItem.Background = new SolidColorBrush(Colors.DarkGray);
-            tabItem.Content = new ElementMenu(Bookshelf.Books, this);
+            ContentPanel.Children.Clear();
+            ContentPanel.Children.Add(new ElementMenu(Bookshelf.Books));
+            tabItem.Content = _tabContent;
 
             return tabItem;
         }
@@ -56,7 +66,27 @@ namespace MayProject
         {
             if (usercontrol is CategoriesMenu)
                 (this.WorkArea.SelectedItem as TabItem).Header = (usercontrol as CategoriesMenu).BookTitle;
-            (this.WorkArea.SelectedItem as TabItem).Content = usercontrol;
+            ContentPanel.Children.Clear();
+            ContentPanel.Children.Add(usercontrol);
+            (this.WorkArea.SelectedItem as TabItem).Content = _tabContent;
+        }
+
+        private Grid TabContent(Grid g)
+        {
+            Grid grid = new Grid();
+            ColumnDefinition sideMenuColumn = new ColumnDefinition();
+            ColumnDefinition contentColumn = new ColumnDefinition();
+            sideMenuColumn.Width = GridLength.Auto;
+            grid.ColumnDefinitions.Add(sideMenuColumn);
+            grid.ColumnDefinitions.Add(contentColumn);
+            Grid.SetColumn(SideMenu, 0);
+            Grid.SetRow(SideMenu, 0);
+            Grid.SetColumn(g, 1);
+            Grid.SetRow(g, 0);
+            grid.Children.Add(SideMenu);
+            grid.Children.Add(g);
+
+            return grid;
         }
 
         private void NewTabButton_Click(object sender, RoutedEventArgs e)

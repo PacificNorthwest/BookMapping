@@ -12,21 +12,21 @@ namespace MayProject.DataModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string ChapterName { get; set; }
+        public string Time { get; set; }
         public List<Character> Characters { get; set; } = new List<Character>();
         public Location Location { get; set; } = new Location();
 
-        public Event(string title, string description, string chapterName, List<Character> characters, Location location)
+        public Event(string title, string description, string time, List<Character> characters, Location location)
         {
             Title = title;
             Description = description;
-            ChapterName = chapterName;
+            Time = time;
             Characters = characters;
             Location = location;
         }
 
-        public Event(string title) : this(title, "No description", "No chapter name", new List<Character>(), new Location()) { }
+        public Event(string title) : this(title, "No description", "No time", new List<Character>(), new Location()) { }
 
-        public Event() : this("No title", "No description", "No chapter name", new List<Character>(), new Location()) { }
+        public Event() : this("No title", "No description", "No time", new List<Character>(), new Location()) { }
     }
 }

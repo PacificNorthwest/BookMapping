@@ -35,9 +35,10 @@ namespace MayProject.Pages
             _book = book;
             InitializeComponent();
             LoadMap(_book.RelationsMap);
+            PopulateSideMenu();
         }
 
-        private void LoadMap(RelationsMap map)
+        private void LoadMap(Map map)
         {
             List<IIllustratable> elements = new List<IIllustratable>(_book.Characters.Count +
                                                                      _book.Locations.Count);
@@ -74,6 +75,128 @@ namespace MayProject.Pages
 
                 LinkNodes(sourceNode, destinationNode, info.LabelText);
             }
+        }
+
+        private void PopulateSideMenu()
+        {
+            MainWindow.SideMenu.Visibility = Visibility.Visible;
+            var menu = new RelationsMapSideMenu();
+            menu.EventsMapSwitch.Click += EventsMapSwitch_Click;
+            menu.SideMenu_Characters.Children.Clear();
+            menu.SideMenu_Locations.Children.Clear();
+
+            foreach (Character character in _book.Characters)
+            {
+                Grid plate = CreateIllustrationPlate(character, menu.FindResource("RoundCorners") as Style);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.DataContext = character;
+                plate.PreviewMouseMove += Plate_MouseMove;
+                menu.SideMenu_Characters.Children.Add(plate);
+            }
+            foreach (Location location in _book.Locations)
+            {
+                Grid plate = CreateIllustrationPlate(location, menu.FindResource("RoundCorners") as Style);
+                plate.Margin = new Thickness(2);
+                plate.MaxWidth = 80;
+                plate.DataContext = location;
+                plate.PreviewMouseMove += Plate_MouseMove;
+                menu.SideMenu_Locations.Children.Add(plate);
+            }
+            MainWindow.SideMenu.Content = menu;
+        }
+
+        private void EventsMapSwitch_Click(object sender, RoutedEventArgs e)
+        {
+            PageSwitcher.Switch(new EventsMapPage(_book));
+        }
+
+        private void Plate_MouseMove(object sender, MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DataObject data = new DataObject();
+                data.SetData("IIllustratable", (sender as Grid).DataContext as IIllustratable);
+
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Move | DragDropEffects.Copy);
+            }
+        }
+
+        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        {
+            base.OnGiveFeedback(e);
+            if (e.Effects.HasFlag(DragDropEffects.Copy))
+            {
+                Mouse.SetCursor(Cursors.Cross);
+            }
+            else if (e.Effects.HasFlag(DragDropEffects.Move))
+            {
+                Mouse.SetCursor(Cursors.Pen);
+            }
+            else
+            {
+                Mouse.SetCursor(Cursors.No);
+            }
+            e.Handled = true;
+        }
+
+        private Grid CreateIllustrationPlate(IIllustratable element, Style style)
+        {
+            BitmapImage img;
+            if (element.Illustrations.Count > 0)
+                img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
+            else
+            {
+                if (element is Character)
+                    img = Properties.Resources.avatar.ToBitmapImage();
+                else if (element is Location)
+                    img = Properties.Resources.park.ToBitmapImage();
+                else
+                    img = Properties.Resources.defaultIllustration.ToBitmapImage();
+            }
+            Button illustration = new Button();
+            illustration.Style = style;
+
+            Image image = new Image();
+            image.Source = img;
+            illustration.Content = image;
+
+            Label label = new Label();
+            label.VerticalAlignment = VerticalAlignment.Center;
+            label.HorizontalAlignment = HorizontalAlignment.Left;
+            label.Content = element.Title;
+
+            Button plate = new Button()
+            {
+                Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                BorderThickness = new Thickness(0)
+            };
+            return CreateIllustrationGrid(illustration, label);
+
+            //return plate;
+        }
+
+        private Grid CreateIllustrationGrid(Button image, Label label)
+        {
+            Grid grid = new Grid();
+            Viewbox viewbox = new Viewbox();
+            viewbox.Child = label;
+            RowDefinition firstRow = new RowDefinition();
+            firstRow.Height = GridLength.Auto;
+            RowDefinition secondRow = new RowDefinition();
+            secondRow.Height = new GridLength(0.3, GridUnitType.Star);
+            grid.RowDefinitions.Add(firstRow);
+            grid.RowDefinitions.Add(secondRow);
+            Grid.SetRow(image, 0);
+            Grid.SetColumn(image, 0);
+            Grid.SetRow(viewbox, 1);
+            Grid.SetColumn(viewbox, 0);
+
+            grid.Children.Add(image);
+            grid.Children.Add(viewbox);
+
+            return grid;
         }
 
         protected override void OnDrop(DragEventArgs e)

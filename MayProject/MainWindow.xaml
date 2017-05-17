@@ -90,7 +90,7 @@
                                 Background="LightSlateGray"
                                 BorderBrush="DarkGray" 
                                 BorderThickness="1,1,1,1" 
-                                CornerRadius="2,8,0,0" >
+                                CornerRadius="2,8,0,0">
                                 <ContentPresenter x:Name="ContentSite"
                                     VerticalAlignment="Center"
                                     HorizontalAlignment="Center"
@@ -175,12 +175,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
@@ -189,33 +184,6 @@
         <DockPanel Name="TitleBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="DarkGray" MouseDown="TitleBar_MouseDown">
             <Button Name="CloseButton" FontSize="15" Content="X" Background="DarkGray" HorizontalAlignment="Right" Width="27" BorderThickness="0" Click="CloseButton_Click"/>
         </DockPanel>
-
-        <ScrollViewer Name="SideMenu" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Width="190" Margin="5,0,0,0" Visibility="Collapsed">
-            <Grid >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0.2*"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Chapters" Grid.Row="0" FontSize="18" VerticalAlignment="Top"/>
-                <UniformGrid Name="SideMenu_Chapters" Columns="4" Grid.Row="1"/>
-                <TextBlock Text="Characters" Grid.Row="2" FontSize="18"/>
-                <UniformGrid Name="SideMenu_Characters" Columns="2" Grid.Row="3"/>
-                <TextBlock Text="Locations" Grid.Row="4" FontSize="18"/>
-                <UniformGrid Name="SideMenu_Locations" Columns="2" Grid.Row="5"/>
-                <TextBlock Text="Maps" Grid.Row="6" FontSize="18"/>
-                <StackPanel Name="SideMenu_Maps" Grid.Row="7"/>
-                <TextBlock Text="Notes" Grid.Row="8" FontSize="18"/>
-                <StackPanel Name="SideMenu_Notes" Grid.Row="9"/>
-            </Grid>
-        </ScrollViewer>
         <TabControl Name="WorkArea" Grid.Column="1" Grid.Row="1" Background="Gray"/>
     </Grid>
 </Window>

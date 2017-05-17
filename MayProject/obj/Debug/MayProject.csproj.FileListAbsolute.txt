@@ -43,7 +43,6 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapPage.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapPage.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\NewEventWindow.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\NewEventWindow.baml
-E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Link.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Node.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\Link.baml
@@ -52,3 +51,10 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventNode.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapPage.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventNode.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapPage.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookSideMenu.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookSideMenu.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.baml
