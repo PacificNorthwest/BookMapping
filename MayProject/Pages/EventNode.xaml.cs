@@ -41,9 +41,14 @@ namespace MayProject.Pages
             mCanvas = canvas;
             EventTitle.Text = title;
             EventDescription.Text = description;
-            EventCharacters.Text = characters
-                                      .Select(c => c.Title).ToList()
-                                      .Aggregate((current, next) => $"{current}\n{next}");
+            if (characters.Count > 1)
+                EventCharacters.Text = characters
+                                          .Select(c => c.Title).ToList()
+                                          .Aggregate((current, next) => $"{current}\n{next}");
+            else if (characters.Count == 1)
+                EventCharacters.Text = characters[0].Title;
+            else
+                EventCharacters.Text = string.Empty;
             EventLocation.Text = location.Title;
             EventTime.Text = time;
         }

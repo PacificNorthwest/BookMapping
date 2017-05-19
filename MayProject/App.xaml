@@ -3,6 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <TabControl x:Key="WorkArea" Grid.Column="1" Grid.Row="1" Background="Gray"/>
     </Application.Resources>
 </Application>

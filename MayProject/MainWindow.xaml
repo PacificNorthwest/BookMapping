@@ -175,7 +175,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
+    <Grid Name="MainContainer">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
@@ -184,6 +184,5 @@
         <DockPanel Name="TitleBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="DarkGray" MouseDown="TitleBar_MouseDown">
             <Button Name="CloseButton" FontSize="15" Content="X" Background="DarkGray" HorizontalAlignment="Right" Width="27" BorderThickness="0" Click="CloseButton_Click"/>
         </DockPanel>
-        <TabControl Name="WorkArea" Grid.Column="1" Grid.Row="1" Background="Gray"/>
     </Grid>
 </Window>

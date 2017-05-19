@@ -58,3 +58,4 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.g
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\App.baml

@@ -58,7 +58,7 @@ namespace MayProject.Pages
                 menu.SideMenuEvents.Children.Add(button);
             }
 
-            MainWindow.SideMenu.Content = menu;
+            (MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
         }
 
         private void LoadMap(Map map)

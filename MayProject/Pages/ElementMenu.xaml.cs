@@ -50,11 +50,9 @@ namespace MayProject.Pages
         {
             if (_elements.GetType().GenericTypeArguments[0].Name != "Book")
             {
-                MainWindow.SideMenu.Visibility = Visibility.Visible;
+                (MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
                 PopulateSideMenu();
             }
-            else
-               MainWindow.SideMenu.Visibility = Visibility.Collapsed;
             Container.Children.Clear();
             foreach (IElement element in _elements)
             {
@@ -83,6 +81,9 @@ namespace MayProject.Pages
                 plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
                 plate.Style = menu.FindResource("RoundCorners") as Style;
                 plate.Content = _book.Chapters.IndexOf(chapter) + 1;
+                plate.Click += (object sender, RoutedEventArgs e) => 
+                                PageSwitcher.Switch(new ChapterPage(_book.Chapters,
+                                                                    _book.Chapters[Convert.ToInt32(plate.Content) - 1]));
                 menu.SideMenu_Chapters.Children.Add(plate);
             }
             foreach (Character character in _book.Characters)
@@ -93,6 +94,8 @@ namespace MayProject.Pages
                 plate.FontSize = 18;
                 plate.Click -= Plate_Click;
                 plate.DataContext = character;
+                plate.Click += (object sender, RoutedEventArgs e) =>
+                                PageSwitcher.Switch(new CharacterProfile(_book.Characters, plate.DataContext as Character));
                 menu.SideMenu_Characters.Children.Add(plate);
             }
             foreach (Location location in _book.Locations)
@@ -103,6 +106,8 @@ namespace MayProject.Pages
                 plate.FontSize = 18;
                 plate.Click -= Plate_Click;
                 plate.DataContext = location;
+                plate.Click += (object sender, RoutedEventArgs e) =>
+                                PageSwitcher.Switch(new LocationPage(_book.Locations, plate.DataContext as Location));
                 menu.SideMenu_Locations.Children.Add(plate);
             }
             Button relationsMap = new Button();
@@ -110,11 +115,15 @@ namespace MayProject.Pages
             relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
             relationsMap.FontSize = 18;
             relationsMap.Margin = new Thickness(2);
+            relationsMap.Click += (object sender, RoutedEventArgs e) =>
+                                   PageSwitcher.Switch(new RelationsMapPage(_book));
             Button eventsMap = new Button();
             eventsMap.Content = "Events Map";
             eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
             eventsMap.FontSize = 18;
             eventsMap.Margin = new Thickness(2);
+            eventsMap.Click += (object sender, RoutedEventArgs e) =>
+                                PageSwitcher.Switch(new EventsMapPage(_book));
             menu.SideMenu_Maps.Children.Add(relationsMap);
             menu.SideMenu_Maps.Children.Add(eventsMap);
 
@@ -124,10 +133,13 @@ namespace MayProject.Pages
                 plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
                 plate.Content = note.Title;
                 plate.FontSize = 18;
+                plate.DataContext = note;
+                plate.Click += (object sender, RoutedEventArgs e) =>
+                                PageSwitcher.Switch(new NotePage(_book.Notes, plate.DataContext as Note));
                 menu.SideMenu_Notes.Children.Add(plate);
             }
 
-            MainWindow.SideMenu.Content = menu;
+            (MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
 
         }
 

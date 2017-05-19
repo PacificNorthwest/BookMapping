@@ -24,12 +24,8 @@ namespace MayProject
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static ScrollViewer SideMenu { get; set; } =
-                                    new ScrollViewer() { Width = 190,
-                                                         VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                                                         Visibility = Visibility.Collapsed };
-        public static Grid ContentPanel { get; set; } = new Grid();
-        private static Grid _tabContent;
+        public static TabItem CurrentItem => (App.Current.FindResource("WorkArea") as TabControl).SelectedItem as TabItem;
+        private TabControl WorkArea { get; set; }
 
         public MainWindow()
         {
@@ -44,7 +40,8 @@ namespace MayProject
             finally
             {
                 InitializeComponent();
-                _tabContent = TabContent(ContentPanel);
+                WorkArea = App.Current.FindResource("WorkArea") as TabControl;
+                MainContainer.Children.Add(WorkArea);
                 PageSwitcher.mainWindow = this;
                 this.WorkArea.Items.Add(NewTab());
             }
@@ -55,9 +52,15 @@ namespace MayProject
             TabItem tabItem = new TabItem();
             tabItem.Header = "New tab";
             tabItem.Background = new SolidColorBrush(Colors.DarkGray);
-            ContentPanel.Children.Clear();
-            ContentPanel.Children.Add(new ElementMenu(Bookshelf.Books));
-            tabItem.Content = _tabContent;
+            Grid contentPanel = new Grid();
+            contentPanel.Children.Add(new ElementMenu(Bookshelf.Books));
+            tabItem.DataContext = new ScrollViewer()
+                                    {
+                                        Width = 190,
+                                        VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                                        Visibility = Visibility.Collapsed
+                                    };
+            tabItem.Content = TabContent(contentPanel, tabItem.DataContext as ScrollViewer);
 
             return tabItem;
         }
@@ -66,12 +69,13 @@ namespace MayProject
         {
             if (usercontrol is CategoriesMenu)
                 (this.WorkArea.SelectedItem as TabItem).Header = (usercontrol as CategoriesMenu).BookTitle;
-            ContentPanel.Children.Clear();
-            ContentPanel.Children.Add(usercontrol);
-            (this.WorkArea.SelectedItem as TabItem).Content = _tabContent;
+
+
+            (((this.WorkArea.SelectedItem as TabItem).Content as Grid).Children[1] as Grid).Children.Clear();
+            (((this.WorkArea.SelectedItem as TabItem).Content as Grid).Children[1] as Grid).Children.Add(usercontrol);
         }
 
-        private Grid TabContent(Grid g)
+        private Grid TabContent(Grid g, ScrollViewer sideMenu)
         {
             Grid grid = new Grid();
             ColumnDefinition sideMenuColumn = new ColumnDefinition();
@@ -79,11 +83,11 @@ namespace MayProject
             sideMenuColumn.Width = GridLength.Auto;
             grid.ColumnDefinitions.Add(sideMenuColumn);
             grid.ColumnDefinitions.Add(contentColumn);
-            Grid.SetColumn(SideMenu, 0);
-            Grid.SetRow(SideMenu, 0);
+            Grid.SetColumn(sideMenu, 0);
+            Grid.SetRow(sideMenu, 0);
             Grid.SetColumn(g, 1);
             Grid.SetRow(g, 0);
-            grid.Children.Add(SideMenu);
+            grid.Children.Add(sideMenu);
             grid.Children.Add(g);
 
             return grid;

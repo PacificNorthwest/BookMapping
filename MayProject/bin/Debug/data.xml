@@ -158,8 +158,8 @@
           </key>
           <value>
             <Point>
-              <X>578</X>
-              <Y>407.72</Y>
+              <X>584</X>
+              <Y>415.72</Y>
             </Point>
           </value>
         </item>
@@ -180,8 +180,8 @@
           </key>
           <value>
             <Point>
-              <X>444</X>
-              <Y>301.72</Y>
+              <X>443</X>
+              <Y>295.72</Y>
             </Point>
           </value>
         </item>
@@ -211,7 +211,7 @@
         <LinkInfo>
           <SourceNodeName>Victor Cram</SourceNodeName>
           <DestinationNodeName>Voldemort</DestinationNodeName>
-          <LabelText>Lovers</LabelText>
+          <LabelText>Siblings</LabelText>
         </LinkInfo>
         <LinkInfo>
           <SourceNodeName>Voldemort</SourceNodeName>
@@ -257,8 +257,8 @@
           </key>
           <value>
             <Point>
-              <X>62</X>
-              <Y>-63</Y>
+              <X>71</X>
+              <Y>-10</Y>
             </Point>
           </value>
         </item>
@@ -268,7 +268,7 @@
           </key>
           <value>
             <Point>
-              <X>497.00000000000006</X>
+              <X>487.24666666666673</X>
               <Y>44.720000000000027</Y>
             </Point>
           </value>
