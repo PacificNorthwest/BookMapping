@@ -217,7 +217,7 @@ namespace MayProject.Pages
                                            storyEvent.Description,
                                            storyEvent.Characters,
                                            storyEvent.Location,
-                                           "12:00");
+                                           storyEvent.Time);
             node.DataContext = storyEvent;
             node.ContextMenu = this.FindResource("NodeContextMenu") as ContextMenu;
             node.MouseDown += Node_PreviewMouseDown;

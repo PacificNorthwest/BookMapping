@@ -121,7 +121,7 @@ namespace MayProject.Pages
         private void ClearFields()
         {
             EventTitle.Text = string.Empty;
-            ChapterName.Text = string.Empty;
+            Time.Text = string.Empty;
             EventDescription.Text = string.Empty;
         }
 
@@ -134,10 +134,10 @@ namespace MayProject.Pages
                                                                             .Content as Grid)
                                                                             .DataContext as string));
             CreatedEvent = new Event(EventTitle.Text,
-                                       EventDescription.Text,
-                                       ChapterName.Text,
-                                       characters,
-                                       location);
+                                     EventDescription.Text,
+                                     Time.Text,
+                                     characters,
+                                     location);
             ClearFields();
             this.Close();
         }

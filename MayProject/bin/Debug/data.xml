@@ -115,6 +115,8 @@
         <string>Victor Cram</string>
         <string>Voldemort</string>
         <string>Harry Potter</string>
+        <string>Hogwarts</string>
+        <string>Durmstrang</string>
       </Elements>
       <Coordinates>
         <item>
@@ -172,6 +174,28 @@
             </Point>
           </value>
         </item>
+        <item>
+          <key>
+            <string>Hogwarts</string>
+          </key>
+          <value>
+            <Point>
+              <X>444</X>
+              <Y>301.72</Y>
+            </Point>
+          </value>
+        </item>
+        <item>
+          <key>
+            <string>Durmstrang</string>
+          </key>
+          <value>
+            <Point>
+              <X>44</X>
+              <Y>233.72000000000003</Y>
+            </Point>
+          </value>
+        </item>
       </Coordinates>
       <Links>
         <LinkInfo>
@@ -199,6 +223,26 @@
           <DestinationNodeName>Malfoy</DestinationNodeName>
           <LabelText>Lovers</LabelText>
         </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Hogwarts</SourceNodeName>
+          <DestinationNodeName>Harry Potter</DestinationNodeName>
+          <LabelText />
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Hogwarts</SourceNodeName>
+          <DestinationNodeName>Hermione</DestinationNodeName>
+          <LabelText />
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Hogwarts</SourceNodeName>
+          <DestinationNodeName>Malfoy</DestinationNodeName>
+          <LabelText />
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Durmstrang</SourceNodeName>
+          <DestinationNodeName>Victor Cram</DestinationNodeName>
+          <LabelText />
+        </LinkInfo>
       </Links>
     </RelationsMap>
     <EventsMap>
@@ -213,8 +257,8 @@
           </key>
           <value>
             <Point>
-              <X>70</X>
-              <Y>-7</Y>
+              <X>62</X>
+              <Y>-63</Y>
             </Point>
           </value>
         </item>
@@ -224,8 +268,8 @@
           </key>
           <value>
             <Point>
-              <X>515</X>
-              <Y>-19.279999999999973</Y>
+              <X>497.00000000000006</X>
+              <Y>44.720000000000027</Y>
             </Point>
           </value>
         </item>

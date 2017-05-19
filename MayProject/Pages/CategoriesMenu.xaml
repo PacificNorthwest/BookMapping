@@ -112,9 +112,9 @@
                 <TextBlock>Notes</TextBlock>
             </Viewbox>
         </Button>
-        <Button Name="Relations" Style="{StaticResource ButtonStyle}" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="10,4,5,4" Grid.Row="1" DataContext="Relations">
+        <Button Name="Button_Map" Style="{StaticResource ButtonStyle}" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="4" Margin="10,4,5,4" Grid.Row="1" DataContext="Relations">
             <Viewbox Margin="15">
-                <TextBlock>Relations</TextBlock>
+                <TextBlock>Maps</TextBlock>
             </Viewbox>
         </Button>
     </Grid>
