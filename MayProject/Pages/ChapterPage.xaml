@@ -12,11 +12,7 @@
             <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button Name="Back" Background="Transparent" BorderThickness="0" Grid.Column="0" Grid.Row="0" Margin="5, 5, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxHeight="30" Click="Back_Click">
-            <Button.Content>
-                <Image Source="pack://application:,,,/Resources/back-arrow.png"/>
-            </Button.Content>
-        </Button>
+        <Button Name="Back" Background="Transparent" BorderThickness="0" Grid.Column="0" Grid.Row="0" Margin="5, 5, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxHeight="30" Click="Back_Click"/>
         <TextBox Name="ChapterTitle" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Gray" Grid.Row="0" FontSize="35" Foreground="Black" Text="Chapter Title" BorderThickness="0"/>
         <TextBox Name="ChapterDescription" Grid.Row="1" Background="DarkGray" FontSize="25" FontStyle="Italic" Foreground="Black" Text="Description" BorderThickness="0"/>
         <ScrollViewer Grid.Row="2" Background="Gray" BorderThickness="0" VerticalScrollBarVisibility="Auto">

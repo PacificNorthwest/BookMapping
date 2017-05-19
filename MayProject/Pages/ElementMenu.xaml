@@ -24,7 +24,6 @@
             <EventSetter Event="Control.MouseEnter" Handler="ContextMenuButton_MouseOver"/>
             <EventSetter Event="Control.MouseLeave" Handler="ContextMenuButton_MouseLeave"/>
         </Style>
-
         <Style TargetType="Button">
             <Setter Property="Control.Template">
                 <Setter.Value>
@@ -75,7 +74,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <WrapPanel Name="Container" Background="Gray"/>
         </ScrollViewer>
     </Grid>

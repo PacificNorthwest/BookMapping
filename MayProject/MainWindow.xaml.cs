@@ -24,6 +24,7 @@ namespace MayProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Stack<UserControl> History { get; set; } = new Stack<UserControl>();
         public static TabItem CurrentItem => (App.Current.FindResource("WorkArea") as TabControl).SelectedItem as TabItem;
         private TabControl WorkArea { get; set; }
 
@@ -54,13 +55,29 @@ namespace MayProject
             tabItem.Background = new SolidColorBrush(Colors.DarkGray);
             Grid contentPanel = new Grid();
             contentPanel.Children.Add(new ElementMenu(Bookshelf.Books));
-            tabItem.DataContext = new ScrollViewer()
-                                    {
-                                        Width = 190,
-                                        VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
-                                        Visibility = Visibility.Collapsed
+
+            Button button_back = new Button()
+                                     {
+                                        VerticalAlignment = VerticalAlignment.Top,
+                                        HorizontalAlignment = HorizontalAlignment.Left,
+                                        BorderThickness = new Thickness(0),
+                                        Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                                        MaxWidth = 20,
+                                        Content = new Image() { Source = Properties.Resources.back_arrow.ToBitmapImage() }
                                     };
-            tabItem.Content = TabContent(contentPanel, tabItem.DataContext as ScrollViewer);
+            button_back.Click += (object sender, RoutedEventArgs e) => PageSwitcher.Back();
+            Dictionary<string, object> properties = new Dictionary<string, object>();
+            properties.Add("Side menu", new ScrollViewer()
+                                            {
+                                                Width = 190,
+                                                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                                                Visibility = Visibility.Collapsed
+                                            });
+            properties.Add("History", new Stack<UserControl>());
+            tabItem.DataContext = properties;
+            tabItem.Content = TabContent(contentPanel, 
+                                         (tabItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer,
+                                         button_back);
 
             return tabItem;
         }
@@ -70,12 +87,11 @@ namespace MayProject
             if (usercontrol is CategoriesMenu)
                 (this.WorkArea.SelectedItem as TabItem).Header = (usercontrol as CategoriesMenu).BookTitle;
 
-
             (((this.WorkArea.SelectedItem as TabItem).Content as Grid).Children[1] as Grid).Children.Clear();
             (((this.WorkArea.SelectedItem as TabItem).Content as Grid).Children[1] as Grid).Children.Add(usercontrol);
         }
 
-        private Grid TabContent(Grid g, ScrollViewer sideMenu)
+        private Grid TabContent(Grid g, ScrollViewer sideMenu, Button button_back)
         {
             Grid grid = new Grid();
             ColumnDefinition sideMenuColumn = new ColumnDefinition();
@@ -85,10 +101,13 @@ namespace MayProject
             grid.ColumnDefinitions.Add(contentColumn);
             Grid.SetColumn(sideMenu, 0);
             Grid.SetRow(sideMenu, 0);
+            Grid.SetColumn(button_back, 1);
+            Grid.SetRow(button_back, 0);
             Grid.SetColumn(g, 1);
             Grid.SetRow(g, 0);
             grid.Children.Add(sideMenu);
             grid.Children.Add(g);
+            grid.Children.Add(button_back);
 
             return grid;
         }

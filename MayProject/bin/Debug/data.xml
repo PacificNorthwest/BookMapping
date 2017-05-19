@@ -29,6 +29,11 @@
         <Locations />
         <Illustrations />
       </Character>
+      <Character>
+        <Title>Ron</Title>
+        <Locations />
+        <Illustrations />
+      </Character>
     </Characters>
     <Locations>
       <Location>
@@ -66,12 +71,6 @@
         <Description>Voldemort killed by Harry Potter during the Hogwarts battle</Description>
         <Time>12:00</Time>
         <Characters>
-          <Character>
-            <Title>Harry Potter</Title>
-            <Description>Main Character</Description>
-            <Locations />
-            <Illustrations />
-          </Character>
           <Character>
             <Title>Voldemort</Title>
             <Locations />
@@ -117,6 +116,7 @@
         <string>Harry Potter</string>
         <string>Hogwarts</string>
         <string>Durmstrang</string>
+        <string>Ron</string>
       </Elements>
       <Coordinates>
         <item>
@@ -180,8 +180,8 @@
           </key>
           <value>
             <Point>
-              <X>443</X>
-              <Y>295.72</Y>
+              <X>408</X>
+              <Y>287.72</Y>
             </Point>
           </value>
         </item>
@@ -191,8 +191,19 @@
           </key>
           <value>
             <Point>
-              <X>44</X>
-              <Y>233.72000000000003</Y>
+              <X>57</X>
+              <Y>168.72000000000003</Y>
+            </Point>
+          </value>
+        </item>
+        <item>
+          <key>
+            <string>Ron</string>
+          </key>
+          <value>
+            <Point>
+              <X>18</X>
+              <Y>430.71999999999997</Y>
             </Point>
           </value>
         </item>
@@ -226,7 +237,7 @@
         <LinkInfo>
           <SourceNodeName>Hogwarts</SourceNodeName>
           <DestinationNodeName>Harry Potter</DestinationNodeName>
-          <LabelText />
+          <LabelText>Lives in</LabelText>
         </LinkInfo>
         <LinkInfo>
           <SourceNodeName>Hogwarts</SourceNodeName>
@@ -243,6 +254,16 @@
           <DestinationNodeName>Victor Cram</DestinationNodeName>
           <LabelText />
         </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Ron</SourceNodeName>
+          <DestinationNodeName>Ron</DestinationNodeName>
+          <LabelText />
+        </LinkInfo>
+        <LinkInfo>
+          <SourceNodeName>Ron</SourceNodeName>
+          <DestinationNodeName>Victor Cram</DestinationNodeName>
+          <LabelText>Lovers</LabelText>
+        </LinkInfo>
       </Links>
     </RelationsMap>
     <EventsMap>
@@ -257,8 +278,8 @@
           </key>
           <value>
             <Point>
-              <X>71</X>
-              <Y>-10</Y>
+              <X>47</X>
+              <Y>-7</Y>
             </Point>
           </value>
         </item>
@@ -268,7 +289,7 @@
           </key>
           <value>
             <Point>
-              <X>487.24666666666673</X>
+              <X>467.74000000000007</X>
               <Y>44.720000000000027</Y>
             </Point>
           </value>

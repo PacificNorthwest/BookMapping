@@ -16,11 +16,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button Name="Back" Background="Transparent" BorderThickness="0" Grid.Column="0" Grid.Row="0" Margin="5, 5, 0, 0" HorizontalAlignment="Left" MaxHeight="30" Click="Back_Click">
-            <Button.Content>
-                <Image Source="pack://application:,,,/Resources/back-arrow.png"/>
-            </Button.Content>
-        </Button>
+        <Button Name="Back" Background="Transparent" BorderThickness="0" Grid.Column="0" Grid.Row="0" Margin="5, 5, 0, 0" HorizontalAlignment="Left" MaxHeight="30" Click="Back_Click"/>
         <Label Content="Title:" BorderThickness="0" FontSize="35" Foreground="Black" Margin="10, 0, 0, 0" Grid.Row="1" Grid.Column="0"/>
         <TextBox Name="NoteTitle" BorderThickness="0" FontSize="35" Foreground="Black" Background="DarkGray" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="5, 0, 10, 0"/>
         <TextBox Name="Note" BorderThickness="0" FontSize="24" Background="DarkGray" Foreground="Black" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="10"/>

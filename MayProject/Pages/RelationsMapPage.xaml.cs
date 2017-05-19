@@ -79,7 +79,8 @@ namespace MayProject.Pages
 
         private void PopulateSideMenu()
         {
-            (MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
+            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Visibility = Visibility.Visible;
+            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
             var menu = new RelationsMapSideMenu();
             menu.EventsMapSwitch.Click += EventsMapSwitch_Click;
             menu.SideMenu_Characters.Children.Clear();
@@ -103,7 +104,8 @@ namespace MayProject.Pages
                 plate.PreviewMouseMove += Plate_MouseMove;
                 menu.SideMenu_Locations.Children.Add(plate);
             }
-            (MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
+            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
+            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
         }
 
         private void EventsMapSwitch_Click(object sender, RoutedEventArgs e)

@@ -15,12 +15,6 @@
             <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <Button Name="Back" Background="Transparent" BorderThickness="0" Grid.Column="0" Grid.Row="0" Margin="5, 5, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top" MaxHeight="30" Click="Back_Click" Height="30" Width="30">
-            <Button.Content>
-                <Image Source="pack://application:,,,/Resources/back-arrow.png"/>
-            </Button.Content>
-        </Button>
         <Image Name="Illustration" Grid.Column="0" Grid.Row="0" Margin="10,40,0,0" Source="/MayProject;component/Resources/park.png"/>
         <TextBox Name="LocationTitle" Background="Transparent" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 20, 0, 0" Text="Location Title" Height="49" Width="213"/>
         <TextBox Name="Description" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" FontSize="25" Margin="10, 100, 10, 10" Background="DarkGray" AcceptsReturn="True" TextWrapping="Wrap"/>
