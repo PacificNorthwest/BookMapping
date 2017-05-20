@@ -53,9 +53,10 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventNode.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapPage.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookSideMenu.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookSideMenu.baml
-E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\RelationsMapSideMenu.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\App.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookTabItem.g.cs
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookTabItem.baml

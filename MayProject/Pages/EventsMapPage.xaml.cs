@@ -58,7 +58,7 @@ namespace MayProject.Pages
                 menu.SideMenuEvents.Children.Add(button);
             }
 
-            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
+            ((MainWindow.SelectedTab.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
             //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
         }
 

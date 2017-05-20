@@ -50,8 +50,7 @@ namespace MayProject.Pages
         {
             if (_elements.GetType().GenericTypeArguments[0].Name != "Book")
             {
-                ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Visibility = Visibility.Visible;
-                //(MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
+                MainWindow.SelectedTab.SideMenu.Visibility = Visibility.Visible;
                 PopulateSideMenu();
             }
             Container.Children.Clear();
@@ -140,9 +139,7 @@ namespace MayProject.Pages
                 menu.SideMenu_Notes.Children.Add(plate);
             }
 
-            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
-
+            MainWindow.SelectedTab.SideMenu.Content = menu;
         }
 
         private Button CreateIllustrationPlate(IIllustratable element)

@@ -1,6 +1,7 @@
 ﻿<Window x:Class="MayProject.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:MayProject.Pages"
         xmlns:proj="clr-namespace:MayProject"
         Height="644" Width="1114.5" 
         WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True"
@@ -79,10 +80,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style TargetType="{x:Type TabItem}">
+        <Style TargetType="{x:Type controls:BookTabItem}">
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TabItem}">
+                    <ControlTemplate TargetType="{x:Type controls:BookTabItem}">
                         <Grid>
                             <Border 
                                 Name="Border"

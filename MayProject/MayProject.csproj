@@ -91,6 +91,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\BookTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ChapterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +160,9 @@
     <Compile Include="PageSwitcher.cs" />
     <Compile Include="Pages\BookSideMenu.xaml.cs">
       <DependentUpon>BookSideMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BookTabItem.xaml.cs">
+      <DependentUpon>BookTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ChapterPage.xaml.cs">
       <DependentUpon>ChapterPage.xaml</DependentUpon>

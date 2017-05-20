@@ -36,9 +36,7 @@ namespace MayProject.Pages
 
         private void PopulateSideMenu()
         {
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
-            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer)
-                                                                               .Visibility = Visibility.Visible;
+            MainWindow.SelectedTab.SideMenu.Visibility = Visibility.Visible;
             var menu = new BookSideMenu();
             menu.SideMenu_Chapters.Children.Clear();
             menu.SideMenu_Characters.Children.Clear();
@@ -111,8 +109,7 @@ namespace MayProject.Pages
                                 PageSwitcher.Switch(new NotePage(_book.Notes, plate.DataContext as Note));
                 menu.SideMenu_Notes.Children.Add(plate);
             }
-            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
+            MainWindow.SelectedTab.SideMenu.Content = menu;
     }
         private Button CreateIllustrationPlate(IIllustratable element, Style style)
         {

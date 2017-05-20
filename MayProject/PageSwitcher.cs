@@ -13,19 +13,13 @@ namespace MayProject
 
         public static void Switch(UserControl userControl)
         {
-            ((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["History"] as Stack<UserControl>)
-                .Push(((MainWindow.CurrentItem
-                .Content as Grid)
-                .Children[1] as Grid)
-                .Children[0] as UserControl);
-            //MainWindow.History.Push(((MainWindow.CurrentItem.Content as Grid).Children[1] as Grid).Children[0] as UserControl);
+            MainWindow.SelectedTab.History.Push(MainWindow.SelectedTab.ContentPanel.Children[0] as UserControl);
             mainWindow.Navigate(userControl);
         }
 
         public static void Back()
         {
-            if (((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["History"] as Stack<UserControl>).Count > 0)
-                mainWindow.Navigate(((MainWindow.CurrentItem.DataContext as Dictionary<string, object>)["History"] as Stack<UserControl>).Pop());
+            mainWindow.Navigate(MainWindow.SelectedTab.History.Pop());
         }
     }
 }
