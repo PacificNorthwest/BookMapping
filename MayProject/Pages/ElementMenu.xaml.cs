@@ -20,16 +20,18 @@ using MayProject.DataModel;
 using MayProject.Contracts;
 using System.Reflection;
 using System.ComponentModel;
+using Microsoft.Win32;
 
 namespace MayProject.Pages
 {
     /// <summary>
     /// Логика взаимодействия для BookMenu.xaml
     /// </summary>
-    public partial class ElementMenu : UserControl
+    public partial class ElementMenu : UserControl, ISideMenuHandler
     {
         private IEnumerable<IElement> _elements;
         private Book _book;
+        private IElement _focusedElement;
 
         public ElementMenu(IEnumerable<IElement> elements)
         {
@@ -64,87 +66,85 @@ namespace MayProject.Pages
             Container.Children.Add(CreateNewElementPlate());
         }
 
-        private void PopulateSideMenu()
+        public void PopulateSideMenu()
         {
-            var menu = new BookSideMenu();
-            menu.SideMenu_Chapters.Children.Clear();
-            menu.SideMenu_Characters.Children.Clear();
-            menu.SideMenu_Locations.Children.Clear();
-            menu.SideMenu_Maps.Children.Clear();
-            menu.SideMenu_Notes.Children.Clear();
+            if (MainWindow.SelectedTab.History.Count > 0)
+            {
+                var menu = new BookSideMenu();
+                menu.SideMenu_Chapters.Children.Clear();
+                menu.SideMenu_Characters.Children.Clear();
+                menu.SideMenu_Locations.Children.Clear();
+                menu.SideMenu_Maps.Children.Clear();
+                menu.SideMenu_Notes.Children.Clear();
 
-            foreach (Chapter chapter in _book.Chapters)
-            {
-                Button plate = new Button();
-                plate.Width = plate.Height = 25;
-                plate.Margin = new Thickness(2);
-                plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
-                plate.Style = menu.FindResource("RoundCorners") as Style;
-                plate.Content = _book.Chapters.IndexOf(chapter) + 1;
-                plate.Click += (object sender, RoutedEventArgs e) => 
-                                PageSwitcher.Switch(new ChapterPage(_book.Chapters,
-                                                                    _book.Chapters[Convert.ToInt32(plate.Content) - 1]));
-                menu.SideMenu_Chapters.Children.Add(plate);
-            }
-            foreach (Character character in _book.Characters)
-            {
-                Button plate = CreateIllustrationPlate(character, menu.FindResource("RoundCorners") as Style);
-                plate.Margin = new Thickness(2);
-                plate.MaxWidth = 80;
-                plate.FontSize = 18;
-                plate.Click -= Plate_Click;
-                plate.DataContext = character;
-                plate.Click += (object sender, RoutedEventArgs e) =>
-                                PageSwitcher.Switch(new CharacterProfile(_book.Characters, plate.DataContext as Character));
-                menu.SideMenu_Characters.Children.Add(plate);
-            }
-            foreach (Location location in _book.Locations)
-            {
-                Button plate = CreateIllustrationPlate(location, menu.FindResource("RoundCorners") as Style);
-                plate.Margin = new Thickness(2);
-                plate.MaxWidth = 80;
-                plate.FontSize = 18;
-                plate.Click -= Plate_Click;
-                plate.DataContext = location;
-                plate.Click += (object sender, RoutedEventArgs e) =>
-                                PageSwitcher.Switch(new LocationPage(_book.Locations, plate.DataContext as Location));
-                menu.SideMenu_Locations.Children.Add(plate);
-            }
-            Button relationsMap = new Button();
-            relationsMap.Content = "Relations Map";
-            relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-            relationsMap.FontSize = 18;
-            relationsMap.Margin = new Thickness(2);
-            relationsMap.Click += (object sender, RoutedEventArgs e) =>
-                                   PageSwitcher.Switch(new RelationsMapPage(_book));
-            Button eventsMap = new Button();
-            eventsMap.Content = "Events Map";
-            eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-            eventsMap.FontSize = 18;
-            eventsMap.Margin = new Thickness(2);
-            eventsMap.Click += (object sender, RoutedEventArgs e) =>
-                                PageSwitcher.Switch(new EventsMapPage(_book));
-            menu.SideMenu_Maps.Children.Add(relationsMap);
-            menu.SideMenu_Maps.Children.Add(eventsMap);
+                foreach (Chapter chapter in _book.Chapters)
+                {
+                    Button plate = new Button();
+                    plate.Width = plate.Height = 25;
+                    plate.Margin = new Thickness(2);
+                    plate.Background = new SolidColorBrush(Color.FromRgb(169, 169, 169));
+                    plate.Style = menu.FindResource("RoundCorners") as Style;
+                    plate.Content = _book.Chapters.IndexOf(chapter) + 1;
+                    plate.Click += (object sender, RoutedEventArgs e) =>
+                                    PageSwitcher.Switch(new ChapterPage(_book.Chapters,
+                                                                        _book.Chapters[Convert.ToInt32(plate.Content) - 1]));
+                    menu.SideMenu_Chapters.Children.Add(plate);
+                }
+                foreach (Character character in _book.Characters)
+                {
+                    Button plate = CreateIllustrationPlate(character, menu.FindResource("RoundCorners") as Style);
+                    plate.Margin = new Thickness(2);
+                    plate.MaxWidth = 80;
+                    plate.FontSize = 18;
+                    plate.Click -= (object sender, RoutedEventArgs e) => OpenElementPage(character);
+                    menu.SideMenu_Characters.Children.Add(plate);
+                }
+                foreach (Location location in _book.Locations)
+                {
+                    Button plate = CreateIllustrationPlate(location, menu.FindResource("RoundCorners") as Style);
+                    plate.Margin = new Thickness(2);
+                    plate.MaxWidth = 80;
+                    plate.FontSize = 18;
+                    plate.Click -= (object sender, RoutedEventArgs e) => OpenElementPage(location);
+                    menu.SideMenu_Locations.Children.Add(plate);
+                }
+                Button relationsMap = new Button();
+                relationsMap.Content = "Relations Map";
+                relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                relationsMap.FontSize = 18;
+                relationsMap.Margin = new Thickness(2);
+                relationsMap.Click += (object sender, RoutedEventArgs e) =>
+                                       PageSwitcher.Switch(new RelationsMapPage(_book));
+                Button eventsMap = new Button();
+                eventsMap.Content = "Events Map";
+                eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                eventsMap.FontSize = 18;
+                eventsMap.Margin = new Thickness(2);
+                eventsMap.Click += (object sender, RoutedEventArgs e) =>
+                                    PageSwitcher.Switch(new EventsMapPage(_book));
+                menu.SideMenu_Maps.Children.Add(relationsMap);
+                menu.SideMenu_Maps.Children.Add(eventsMap);
 
-            foreach (Note note in _book.Notes)
-            {
-                Button plate = new Button();
-                plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-                plate.Content = note.Title;
-                plate.FontSize = 18;
-                plate.DataContext = note;
-                plate.Click += (object sender, RoutedEventArgs e) =>
-                                PageSwitcher.Switch(new NotePage(_book.Notes, plate.DataContext as Note));
-                menu.SideMenu_Notes.Children.Add(plate);
-            }
+                foreach (Note note in _book.Notes)
+                {
+                    Button plate = new Button();
+                    plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                    plate.Content = note.Title;
+                    plate.FontSize = 18;
+                    plate.Click += (object sender, RoutedEventArgs e) =>
+                                    PageSwitcher.Switch(new NotePage(_book.Notes, note));
+                    menu.SideMenu_Notes.Children.Add(plate);
+                }
 
-            MainWindow.SelectedTab.SideMenu.Content = menu;
+                MainWindow.SelectedTab.SideMenu.Content = menu;
+            }
+            else
+               MainWindow.SelectedTab.SideMenu.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private Button CreateIllustrationPlate(IIllustratable element)
         {
-            BitmapImage img;
+            ImageSource img;
             if (element.Illustrations.Count > 0)
                 img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
             else
@@ -162,6 +162,7 @@ namespace MayProject.Pages
 
             Image image = new Image();
             image.Source = img;
+            image.Stretch = Stretch.UniformToFill;
 
             Label label = new Label();
             label.VerticalAlignment = VerticalAlignment.Center;
@@ -169,15 +170,11 @@ namespace MayProject.Pages
             label.Content = element.Title;
 
             plate.Content = CreateIllustrationGrid(image, label);
-            plate.DataContext = element;
-            plate.Click += Plate_Click;
+            plate.Click += (object sender, RoutedEventArgs e) => OpenElementPage(element);
+            plate.MouseRightButtonDown += (object sender, MouseButtonEventArgs e) 
+                                            => _focusedElement = element;
 
             return plate;
-        }
-
-        private void Plate_Click(object sender, RoutedEventArgs e)
-        {
-            OpenElementPage((sender as Button).DataContext as IElement);
         }
 
         private Button CreateTextPlate(IPlainTextElement element)
@@ -200,8 +197,9 @@ namespace MayProject.Pages
             panel.Children.Add(textBlock);
 
             plate.Content = CreateTextGrid(label, panel);
-            plate.Click += Plate_Click;
-            plate.DataContext = element;
+            plate.Click += (object sender, RoutedEventArgs e) => OpenElementPage(element);
+            plate.MouseRightButtonDown += (object sender, MouseButtonEventArgs e)
+                                            => _focusedElement = element;
 
             return plate;
         }
@@ -231,11 +229,12 @@ namespace MayProject.Pages
         {
             Grid grid = new Grid();
             Viewbox viewbox = new Viewbox();
+            viewbox.MaxHeight = 60;
             viewbox.Child = label;
             RowDefinition firstRow = new RowDefinition();
-            firstRow.Height = GridLength.Auto;
+            firstRow.Height = new GridLength(0.7, GridUnitType.Star);
             RowDefinition secondRow = new RowDefinition();
-            secondRow.Height = new GridLength(0.3, GridUnitType.Star);
+            secondRow.Height = GridLength.Auto; //new GridLength(0.3, GridUnitType.Star);
             grid.RowDefinitions.Add(firstRow);
             grid.RowDefinitions.Add(secondRow);
             Grid.SetRow(image, 0);
@@ -271,7 +270,7 @@ namespace MayProject.Pages
 
         private Button CreateIllustrationPlate(IIllustratable element, Style style)
         {
-            BitmapImage img;
+            ImageSource img;
             if (element.Illustrations.Count > 0)
                 img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
             else
@@ -288,6 +287,8 @@ namespace MayProject.Pages
 
             Image image = new Image();
             image.Source = img;
+            
+            image.Stretch = Stretch.UniformToFill;
             illustration.Content = image;
 
             Label label = new Label();
@@ -301,8 +302,7 @@ namespace MayProject.Pages
                 BorderThickness = new Thickness(0)
             };
             plate.Content = CreateIllustrationGrid(illustration, label);
-            plate.DataContext = element;
-            plate.Click += Plate_Click;
+            plate.Click += (object sender, RoutedEventArgs e) => OpenElementPage(element);
 
             return plate;
         }
@@ -311,6 +311,7 @@ namespace MayProject.Pages
         {
             Grid grid = new Grid();
             Viewbox viewbox = new Viewbox();
+            viewbox.MaxHeight = 20;
             viewbox.Child = label;
             RowDefinition firstRow = new RowDefinition();
             firstRow.Height = GridLength.Auto;
@@ -341,37 +342,6 @@ namespace MayProject.Pages
                 PageSwitcher.Switch(new CharacterProfile(_elements, element));
             if (element is Location)
                 PageSwitcher.Switch(new LocationPage(_elements, element));
-        }
-
-
-        private void Plate_MouseMove(object sender, MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DataObject data = new DataObject();
-                data.SetData("IIllustratable", (sender as Button).DataContext as IIllustratable);
-
-                DragDrop.DoDragDrop(this, data, DragDropEffects.Move | DragDropEffects.Copy);
-            }
-        }
-
-        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
-        {
-            base.OnGiveFeedback(e);
-            if (e.Effects.HasFlag(DragDropEffects.Copy))
-            {
-                Mouse.SetCursor(Cursors.Cross);
-            }
-            else if (e.Effects.HasFlag(DragDropEffects.Move))
-            {
-                Mouse.SetCursor(Cursors.Pen);
-            }
-            else
-            {
-                Mouse.SetCursor(Cursors.No);
-            }
-            e.Handled = true;
         }
 
         private void CreateNewElement()
@@ -483,12 +453,9 @@ namespace MayProject.Pages
 
         private void ButtonDeleteElement_Click(object sender, RoutedEventArgs e)
         {
-            (((((sender as Button)
-                .Parent as Grid)
-                .TemplatedParent as ContextMenu)
-                .PlacementTarget as Border)
-                .DataContext as IElement).Delete();
+            _focusedElement.Delete();
             Bookshelf.Books.Save();
+
             (((sender as Button)
                 .Parent as Grid)
                 .TemplatedParent as ContextMenu).Visibility = Visibility.Collapsed;
@@ -497,7 +464,14 @@ namespace MayProject.Pages
 
         private void ButtonAddIllustration_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (_focusedElement is IIllustratable)
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                if (dialog.ShowDialog() == true)
+                    (_focusedElement as IIllustratable).AddIllustration(dialog.FileName);
+                Bookshelf.Books.Save();
+                Visualize();
+            }
         }
 
         private void ButtonRename_Click(object sender, RoutedEventArgs e)

@@ -22,7 +22,7 @@ namespace MayProject.Pages
     /// <summary>
     /// Логика взаимодействия для CategoriesMenu.xaml
     /// </summary>
-    public partial class CategoriesMenu : UserControl
+    public partial class CategoriesMenu : UserControl, ISideMenuHandler
     {
         private Book _book;
         public string BookTitle => _book.Title;
@@ -34,7 +34,7 @@ namespace MayProject.Pages
             PopulateSideMenu();
         }
 
-        private void PopulateSideMenu()
+        public void PopulateSideMenu()
         {
             MainWindow.SelectedTab.SideMenu.Visibility = Visibility.Visible;
             var menu = new BookSideMenu();
@@ -113,7 +113,7 @@ namespace MayProject.Pages
     }
         private Button CreateIllustrationPlate(IIllustratable element, Style style)
         {
-            BitmapImage img;
+            ImageSource img;
             if (element.Illustrations.Count > 0)
                 img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
             else
@@ -130,6 +130,7 @@ namespace MayProject.Pages
 
             Image image = new Image();
             image.Source = img;
+            image.Stretch = Stretch.UniformToFill;
             illustration.Content = image;
 
             Label label = new Label();
@@ -150,6 +151,7 @@ namespace MayProject.Pages
         {
             Grid grid = new Grid();
             Viewbox viewbox = new Viewbox();
+            viewbox.MaxHeight = 20;
             viewbox.Child = label;
             RowDefinition firstRow = new RowDefinition();
             firstRow.Height = GridLength.Auto;

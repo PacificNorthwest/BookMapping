@@ -13,8 +13,7 @@ namespace MayProject.DataModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<Character> Characters { get; set; } = new List<Character>();
-        public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
+        public List<byte[]> Illustrations { get; set; } = new List<byte[]>();
 
         public Location(string title)
         {

@@ -22,11 +22,11 @@ namespace MayProject.Pages
     /// <summary>
     /// Логика взаимодействия для RelationsMapPage.xaml
     /// </summary>
-    public partial class RelationsMapPage : UserControl
+    public partial class RelationsMapPage : UserControl, ISideMenuHandler
     {
         private MapState _currentState;
         private Book _book;
-        private Node _focusedCharacter;
+        private Node _focusedElement;
         private Point _m_start;
         private Vector _m_startOffset;
 
@@ -77,10 +77,9 @@ namespace MayProject.Pages
             }
         }
 
-        private void PopulateSideMenu()
+        public void PopulateSideMenu()
         {
-            ((MainWindow.SelectedTab.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Visibility = Visibility.Visible;
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Visibility = Visibility.Visible;
+            MainWindow.SelectedTab.SideMenu.Visibility = Visibility.Visible;
             var menu = new RelationsMapSideMenu();
             menu.EventsMapSwitch.Click += EventsMapSwitch_Click;
             menu.SideMenu_Characters.Children.Clear();
@@ -104,8 +103,7 @@ namespace MayProject.Pages
                 plate.PreviewMouseMove += Plate_MouseMove;
                 menu.SideMenu_Locations.Children.Add(plate);
             }
-            ((MainWindow.SelectedTab.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
+            MainWindow.SelectedTab.SideMenu.Content = menu;
         }
 
         private void EventsMapSwitch_Click(object sender, RoutedEventArgs e)
@@ -145,7 +143,7 @@ namespace MayProject.Pages
 
         private Grid CreateIllustrationPlate(IIllustratable element, Style style)
         {
-            BitmapImage img;
+            ImageSource img;
             if (element.Illustrations.Count > 0)
                 img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
             else
@@ -162,6 +160,7 @@ namespace MayProject.Pages
 
             Image image = new Image();
             image.Source = img;
+            image.Stretch = Stretch.UniformToFill;
             illustration.Content = image;
 
             Label label = new Label();
@@ -183,6 +182,7 @@ namespace MayProject.Pages
         {
             Grid grid = new Grid();
             Viewbox viewbox = new Viewbox();
+            viewbox.MaxHeight = 20;
             viewbox.Child = label;
             RowDefinition firstRow = new RowDefinition();
             firstRow.Height = GridLength.Auto;
@@ -229,6 +229,7 @@ namespace MayProject.Pages
         private Node NodeFactory(IIllustratable element)
         {
             Image img = new Image();
+            img.Stretch = Stretch.UniformToFill;
             if (element.Illustrations.Count > 0)
                 img.Source = element.Illustrations[element.Illustrations.Count-1].ToBitmapImage();
             else if (element is Character)
@@ -314,7 +315,7 @@ namespace MayProject.Pages
 
         private void Node_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _focusedCharacter = sender as Node;
+            _focusedElement = sender as Node;
         }
 
         private void Node_PreviewMouseUp(object sender, MouseButtonEventArgs e)
@@ -328,7 +329,7 @@ namespace MayProject.Pages
         {
             if (_currentState == MapState.Link)
             {
-                LinkNodes(_focusedCharacter, sender as Node, string.Empty);
+                LinkNodes(_focusedElement, sender as Node, string.Empty);
                 _currentState = MapState.Normal;
             }
             _m_start = e.GetPosition(Map);

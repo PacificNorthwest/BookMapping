@@ -10,15 +10,20 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="67*"/>
             <RowDefinition Height="53*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="53*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Name="Illustration" Grid.Column="0" Grid.Row="0" Margin="10,40,0,10" Source="/MayProject;component/Resources/avatar.png"/>
+        <Image Name="Illustration" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10,40,0,10" Source="/MayProject;component/Resources/avatar.png"/>
         <TextBox Name="CharacterName" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 20, 0, 0" Text="Character Name" Height="47" Width="250"/>
-        <TextBox Name="Description" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="0" Grid.RowSpan="2" FontSize="25" Margin="10, 100, 10, 10" Background="DarkGray"/>
-        <Button Name="SaveChanges" Background="Transparent" BorderThickness="0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" MaxHeight="50" Click="SaveChanges_Click" Height="50" Width="50">
+        <TextBox Name="CharacterAge" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 80, 0, 0" Text="Age" Height="47" Width="250"/>
+        <TextBox Name="CharacterSex" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 140, 0, 0" Text="Sex" Height="47" Width="250"/>
+        <TextBox Name="CharacterAppearence" Background="DarkGray" BorderThickness="0" Grid.Column="1" Grid.Row="1" FontSize="35" Foreground="Black" Margin="10" Text="Appearence"  />
+        <TextBox Name="Description" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="2" Grid.RowSpan="2" FontSize="25" Margin="10, 10, 10, 10" Background="DarkGray" Text="Description"/>
+        <Button Name="SaveChanges" Background="Transparent" BorderThickness="0" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" MaxHeight="50" Click="SaveChanges_Click" Height="50" Width="50">
             <Button.Content>
                 <Image Source="pack://application:,,,/Resources/save.png"/>
             </Button.Content>

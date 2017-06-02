@@ -60,3 +60,4 @@ E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\EventsMapSideMenu.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\App.baml
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookTabItem.g.cs
 E:\Диплом\Май\Git\May\MayProject\obj\Debug\Pages\BookTabItem.baml
+E:\Диплом\Май\Git\May\MayProject\obj\Debug\MayProject.csprojResolveAssemblyReference.cache

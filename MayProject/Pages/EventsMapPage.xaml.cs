@@ -21,7 +21,7 @@ namespace MayProject.Pages
     /// <summary>
     /// Логика взаимодействия для EventsMap.xaml
     /// </summary>
-    public partial class EventsMapPage : UserControl
+    public partial class EventsMapPage : UserControl, ISideMenuHandler
     {
         private MapState _currentState;
         private EventNode _focusedNode;
@@ -37,7 +37,7 @@ namespace MayProject.Pages
             LoadMap(_book.EventsMap);
         }
 
-        private void PopulateSideMenu()
+        public void PopulateSideMenu()
         {
             var menu = new EventsMapSideMenu();
             menu.RelationsMapSwitch.Click += RelationsMapSwitch_Click;
@@ -58,8 +58,7 @@ namespace MayProject.Pages
                 menu.SideMenuEvents.Children.Add(button);
             }
 
-            ((MainWindow.SelectedTab.DataContext as Dictionary<string, object>)["Side menu"] as ScrollViewer).Content = menu;
-            //(MainWindow.CurrentItem.DataContext as ScrollViewer).Content = menu;
+            MainWindow.SelectedTab.SideMenu.Content = menu;
         }
 
         private void LoadMap(Map map)

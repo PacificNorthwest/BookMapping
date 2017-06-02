@@ -28,7 +28,7 @@
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="10" Background="DarkGray">
+                        <Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="10" Background="DarkGray" MaxHeight="300">
                             <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Border.Clip>
                                 <MultiBinding Converter="{StaticResource BorderClipConverter}">

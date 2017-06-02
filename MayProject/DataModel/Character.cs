@@ -12,9 +12,11 @@ namespace MayProject.DataModel
     public class Character : IIllustratable
     {
         public string Title { get; set; }
+        public string Age { get; set; }
+        public string Sex { get; set; }
+        public string Appearence { get; set; }
         public string Description { get; set; }
-        public List<Location> Locations { get; set; } = new List<Location>();
-        public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
+        public List<byte[]> Illustrations { get; set; } = new List<byte[]>();
 
         public Character(string title)
         {

@@ -21,6 +21,7 @@ namespace MayProject.Pages
     public partial class BookTabItem : TabItem
     {
         public Stack<UserControl> History { get; set; } = new Stack<UserControl>();
+        public UserControl CurrentPage => this.ContentPanel.Children[0] as UserControl;
 
         public new bool IsSelected
         {

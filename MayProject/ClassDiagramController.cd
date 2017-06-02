@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MayProject.Controller.BookControl">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgIAAAAAAAEBAAAAAEAAAAAEAIAAAAAAAABAMAAA=</HashCode>
+      <FileName>Controller\BookControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MayProject.Controller.XmlManager">
+    <Position X="7" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controller\XmlManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="MayProject.Controller.MapState">
+    <Position X="7" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Controller\MapState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

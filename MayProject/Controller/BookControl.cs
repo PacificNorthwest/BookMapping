@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Windows.Media;
 
 namespace MayProject.Controller
 {
@@ -45,13 +46,11 @@ namespace MayProject.Controller
                                                                 property.PropertyType.GenericTypeArguments[0].FullName == bookElementType).ToList();
 
             foreach (var book in Bookshelf.Books)
-            {
                 foreach (var property in properties)
                 {
                     var list = typeof(Book).GetProperty(property.Name).GetValue(book);
                     list.GetType().GetMethod("Remove").Invoke(list, new object[] { bookElement });
                 }
-            }
         }
 
         public static void Delete(this Book book)
@@ -61,9 +60,9 @@ namespace MayProject.Controller
 
         public static void AddIllustration(this IIllustratable illustratableElement, string path)
         {
-            illustratableElement.Illustrations.Add(new Bitmap(path));
+            illustratableElement.Illustrations.Add(File.ReadAllBytes(path));
         }
-        public static void DeleteIllustration()
+        public static void DeleteIllustration(this Bitmap illustration)
         {
             throw new NotImplementedException();
         }
@@ -101,5 +100,9 @@ namespace MayProject.Controller
 
             return img;
         }
+
+        public static ImageSource ToBitmapImage(this byte[] bytes) => 
+                     (ImageSource)new ImageSourceConverter().ConvertFrom(bytes);
+       
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Contracts\IElement.cs" />
     <Compile Include="Contracts\IIllustratable.cs" />
     <Compile Include="Contracts\IPlainTextElement.cs" />
+    <Compile Include="Contracts\ISideMenuHandler.cs" />
     <Compile Include="Controller\BookControl.cs" />
     <Compile Include="Controller\MapState.cs" />
     <Compile Include="Controller\XmlManager.cs" />
@@ -227,6 +228,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagramController.cd" />
+    <None Include="ClassDiagramView.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

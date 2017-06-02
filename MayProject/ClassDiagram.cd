@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MayProject.DataModel.Book" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <AssociationLine Name="Chapters" Type="MayProject.DataModel.Chapter">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.027" Y="0.362" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Events" Type="MayProject.DataModel.Event">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.675" Y="-0.036" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Locations" Type="MayProject.DataModel.Location">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.183" Y="0.435" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Notes" Type="MayProject.DataModel.Note">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.534" Y="0.12" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="RelationsMap" Type="MayProject.DataModel.Map">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.006" Y="0.237" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AABgAAAAAAAAAEAAAAIAACAAAgACAAAAAQgAAAAAAAA=</HashCode>
+      <FileName>DataModel\Book.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="EventsMap" />
+      <Property Name="RelationsMap" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Chapters" />
+      <Property Name="Events" />
+      <Property Name="Characters" />
+      <Property Name="Locations" />
+      <Property Name="Notes" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.21" />
+  </Class>
+  <Class Name="MayProject.DataModel.Bookshelf">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DataModel\Bookshelf.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Books" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MayProject.DataModel.Chapter" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>DataModel\Chapter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MayProject.DataModel.Character" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>DataModel\Character.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.19" />
+  </Class>
+  <Class Name="MayProject.DataModel.Event" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <AssociationLine Name="Location" Type="MayProject.DataModel.Location" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="6.69" />
+        <Point X="5.25" Y="6.69" />
+        <Point X="5.25" Y="6.94" />
+        <Point X="6.375" Y="6.94" />
+        <Point X="6.375" Y="6.69" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.065" Y="0.36" Height="0.182" Width="0.995" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAEAAAAIAAAAAAAAAAAAAAQAAAAAAAQA=</HashCode>
+      <FileName>DataModel\Event.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Characters" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MayProject.DataModel.Location" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAEAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>DataModel\Location.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MayProject.DataModel.Map">
+    <Position X="4" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAIAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>DataModel\Map.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Coordinates" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Links" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MayProject.DataModel.Note" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>DataModel\Note.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.571" />
+  </Class>
+  <Class Name="MayProject.DataModel.XmlSerializableDictionary&lt;TKey, TValue&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.75" Y="7.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAABAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>DataModel\XmlSerializableDictionary.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Struct Name="MayProject.DataModel.LinkInfo">
+    <Position X="1" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAIAAAAA=</HashCode>
+      <FileName>DataModel\Map.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="MayProject.Contracts.IElement">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Contracts\IElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MayProject.Contracts.IIllustratable">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Contracts\IIllustratable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MayProject.Contracts.IPlainTextElement">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Contracts\IPlainTextElement.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

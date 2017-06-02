@@ -22,7 +22,7 @@ namespace MayProject.DataModel
         public List<Event> Events { get; set; } = new List<Event>();
         public Map RelationsMap { get; set; } = new Map();
         public Map EventsMap { get; set; } = new Map();
-        public List<Bitmap> Illustrations { get; set; } = new List<Bitmap>();
+        public List<byte[]> Illustrations { get; set; } = new List<byte[]>();
 
         public Book(string title) { Title = title; }
         public Book() : this("No title") { }

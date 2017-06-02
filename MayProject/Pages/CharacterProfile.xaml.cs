@@ -39,12 +39,18 @@ namespace MayProject.Pages
             if (_character.Illustrations.Count > 0)
                 Illustration.Source = _character.Illustrations[0].ToBitmapImage();
             CharacterName.Text = _character.Title;
-            Description.Text = _character.Description;
+            CharacterAge.Text = (_character.Age != null) ? _character.Age : "Age";
+            CharacterSex.Text = (_character.Sex != null) ? _character.Sex : "Sex";
+            CharacterAppearence.Text = (_character.Appearence != null) ? _character.Appearence : "Appearence";
+            Description.Text = (_character.Description != null) ? _character.Description : "Description" ;
         }
 
         private void SaveChanges_Click(object sender, RoutedEventArgs e)
         {
             _character.Title = CharacterName.Text;
+            _character.Age = CharacterAge.Text;
+            _character.Sex = CharacterSex.Text;
+            _character.Appearence = CharacterAppearence.Text;
             _character.Description = Description.Text;
             Bookshelf.Books.Save();
             PageSwitcher.Switch(new ElementMenu(_charactersList));

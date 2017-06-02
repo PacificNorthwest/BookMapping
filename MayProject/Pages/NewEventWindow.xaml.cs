@@ -54,7 +54,7 @@ namespace MayProject.Pages
 
         private Grid CreateIllustrationPlate(IIllustratable element)
         {
-            BitmapImage img;
+            ImageSource img;
             if (element.Illustrations.Count > 0)
                 img = element.Illustrations[element.Illustrations.Count - 1].ToBitmapImage();
             else
