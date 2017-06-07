@@ -19,7 +19,7 @@ using MayProject.Controller;
 namespace MayProject.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для EventsMap.xaml
+    /// Карта событий
     /// </summary>
     public partial class EventsMapPage : UserControl, ISideMenuHandler
     {
@@ -29,6 +29,10 @@ namespace MayProject.Pages
         private Point _m_start;
         private Vector _m_startOffset;
 
+        /// <summary>
+        /// Конструктор по умолчанию
+        /// </summary>
+        /// <param name="book"></param>
         public EventsMapPage(Book book)
         {
             _book = book;
@@ -37,6 +41,9 @@ namespace MayProject.Pages
             LoadMap(_book.EventsMap);
         }
 
+        /// <summary>
+        /// Заполнение боковго меню контекстными данными
+        /// </summary>
         public void PopulateSideMenu()
         {
             var menu = new EventsMapSideMenu();
@@ -49,11 +56,12 @@ namespace MayProject.Pages
                 Button button = new Button()
                 {
                     Content = bookEvent.Title,
-                    Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)),
+                    Background = new SolidColorBrush(Color.FromArgb(255, 236, 235, 231)),
                     FontSize = 20,
                     Height = 70,
                     DataContext = bookEvent
                 };
+
                 button.PreviewMouseMove += Button_PreviewMouseMove;
                 menu.SideMenuEvents.Children.Add(button);
             }
@@ -61,6 +69,10 @@ namespace MayProject.Pages
             MainWindow.SelectedTab.SideMenu.Content = menu;
         }
 
+        /// <summary>
+        /// Чтение карты из модели данных
+        /// </summary>
+        /// <param name="map">Карта для чтения</param>
         private void LoadMap(Map map)
         {
             List<Event> events = _book.Events;
@@ -97,7 +109,11 @@ namespace MayProject.Pages
             }
         }
 
-
+        /// <summary>
+        /// Обработчик события движения курсора мыши над элементом боковго меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -110,6 +126,10 @@ namespace MayProject.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик события визуализации контекста перетаскивания обьекта
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
             base.OnGiveFeedback(e);
@@ -128,6 +148,10 @@ namespace MayProject.Pages
             e.Handled = true;
         }
 
+        /// <summary>
+        /// Обработчик события перетаскивания элемента в рабочую область карты
+        /// </summary>
+        /// <param name="e"></param>
         protected override void OnDrop(DragEventArgs e)
         {
             base.OnDrop(e);
@@ -152,6 +176,9 @@ namespace MayProject.Pages
             }
         }
 
+        /// <summary>
+        /// Сохранение содержимого рабочей области в модель данных
+        /// </summary>
         private void SaveMap()
         {
             _book.EventsMap.Elements.Clear();
@@ -194,11 +221,21 @@ namespace MayProject.Pages
             Bookshelf.Books.Save();
         }
 
+        /// <summary>
+        /// Обработчик события перехода на карту связей
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RelationsMapSwitch_Click(object sender, RoutedEventArgs e)
         {
             PageSwitcher.Switch(new RelationsMapPage(_book));
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку создания нового книжного события
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewEventButton_Click(object sender, RoutedEventArgs e)
         {
             NewEventWindow window = new NewEventWindow(_book);
@@ -210,6 +247,11 @@ namespace MayProject.Pages
             }
         }
 
+        /// <summary>
+        /// Фабричный класс для создания узлов событий
+        /// </summary>
+        /// <param name="storyEvent"></param>
+        /// <returns></returns>
         private EventNode NodeFactory(Event storyEvent)
         {
             EventNode node = new EventNode(Map,
@@ -227,6 +269,12 @@ namespace MayProject.Pages
             return node;
         }
 
+        /// <summary>
+        /// Установка связи между двумя узлами
+        /// </summary>
+        /// <param name="sourceNode">Начальный узел</param>
+        /// <param name="destinationNode">Конечный узел</param>
+        /// <param name="label">Подпись связи</param>
         private void LinkNodes(EventNode sourceNode, EventNode destinationNode, string label)
         {
             Link link = new Link();
@@ -254,11 +302,21 @@ namespace MayProject.Pages
             Map.Children.Add(link);
         }
 
+        /// <summary>
+        /// Обработчик события нажатия правой клавишей мыши на узле
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Node_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             _focusedNode = sender as EventNode;
         }
 
+        /// <summary>
+        /// Обработчик события отпускания клавиши мыши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Node_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
             (sender as EventNode).ReleaseMouseCapture();
@@ -266,6 +324,11 @@ namespace MayProject.Pages
             Bookshelf.Books.Save();
         }
 
+        /// <summary>
+        /// Обработчик события нажатия клавишей мыши на узле
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Node_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_currentState == MapState.Link)
@@ -279,6 +342,11 @@ namespace MayProject.Pages
             (sender as EventNode).CaptureMouse();
         }
 
+        /// <summary>
+        /// Обработчик события передвижения курсора мыши над узлом
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Node_PreviewMouseMove(object sender, MouseEventArgs e)
         {
             if ((sender as EventNode).IsMouseCaptured)
@@ -291,6 +359,11 @@ namespace MayProject.Pages
             }
         }
 
+        /// <summary>
+        /// Обработчик события вхождения курсора мыши в область кнопки контекстного меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ContextMenuButton_MouseOver(object sender, RoutedEventArgs e)
         {
             ((((sender as Button).Parent as Grid).Children
@@ -299,6 +372,11 @@ namespace MayProject.Pages
                 .Text = (sender as Button).DataContext as string;
         }
 
+        /// <summary>
+        /// Обработчик события выхода курсора мыши из области кнопки контекстного меню
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ContextMenuButton_MouseLeave(object sender, RoutedEventArgs e)
         {
             ((((sender as Button).Parent as Grid).Children
@@ -307,6 +385,11 @@ namespace MayProject.Pages
                 .Text = string.Empty;
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на кнопку установления свзяи между узлами
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonLink_Click(object sender, RoutedEventArgs e)
         {
             _currentState = MapState.Link;

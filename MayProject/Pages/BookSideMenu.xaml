@@ -6,14 +6,14 @@
              xmlns:local="clr-namespace:MayProject.Pages"
              xmlns:proj="clr-namespace:MayProject"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="300" Background="Transparent">
+             d:DesignHeight="1000" d:DesignWidth="300" Background="#FF213869">
     <UserControl.Resources>
         <proj:BorderClipConverter x:Key="BorderClipConverter"/>
         <Style x:Key="RoundCorners">
             <Setter Property="Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="180" Background="DarkGray" MaxHeight="60" MaxWidth="60">
+                        <Border x:Name="ButtonBorder" BorderThickness="0" CornerRadius="180" Background="#FFECEBE7" MaxHeight="60" MaxWidth="60">
                             <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <Border.Clip>
                                 <MultiBinding Converter="{StaticResource BorderClipConverter}">
@@ -44,15 +44,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Chapters" Grid.Row="0" FontSize="18" VerticalAlignment="Top"/>
+        <TextBlock Text="Chapters" Grid.Row="0" FontSize="25" VerticalAlignment="Top" Foreground="White"  HorizontalAlignment="Center"/>
         <UniformGrid Name="SideMenu_Chapters" Columns="4" Grid.Row="1"/>
-        <TextBlock Text="Characters" Grid.Row="2" FontSize="18"/>
-        <UniformGrid Name="SideMenu_Characters" Columns="2" Grid.Row="3"/>
-        <TextBlock Text="Locations" Grid.Row="4" FontSize="18"/>
+        <TextBlock Text="Characters" Grid.Row="2" FontSize="25" Foreground="White"  HorizontalAlignment="Center"/>
+        <UniformGrid Name="SideMenu_Characters" Columns="2" Grid.Row="3" />
+        <TextBlock Text="Locations" Grid.Row="4" FontSize="25" Foreground="White"  HorizontalAlignment="Center"/>
         <UniformGrid Name="SideMenu_Locations" Columns="2" Grid.Row="5"/>
-        <TextBlock Text="Maps" Grid.Row="6" FontSize="18"/>
+        <TextBlock Text="Maps" Grid.Row="6" FontSize="25" Foreground="White"  HorizontalAlignment="Center"/>
         <StackPanel Name="SideMenu_Maps" Grid.Row="7"/>
-        <TextBlock Text="Notes" Grid.Row="8" FontSize="18"/>
+        <TextBlock Text="Notes" Grid.Row="8" FontSize="25" Foreground="White" HorizontalAlignment="Center"/>
         <StackPanel Name="SideMenu_Notes" Grid.Row="9"/>
     </Grid>
 </UserControl>

@@ -30,8 +30,8 @@ namespace MayProject.Pages
     public partial class ElementMenu : UserControl, ISideMenuHandler
     {
         private IEnumerable<IElement> _elements;
-        private Book _book;
         private IElement _focusedElement;
+        private Book _book;
 
         public ElementMenu(IEnumerable<IElement> elements)
         {
@@ -86,8 +86,7 @@ namespace MayProject.Pages
                     plate.Style = menu.FindResource("RoundCorners") as Style;
                     plate.Content = _book.Chapters.IndexOf(chapter) + 1;
                     plate.Click += (object sender, RoutedEventArgs e) =>
-                                    PageSwitcher.Switch(new ChapterPage(_book.Chapters,
-                                                                        _book.Chapters[Convert.ToInt32(plate.Content) - 1]));
+                                    PageSwitcher.Switch(new ChapterPage(_book.Chapters, chapter));
                     menu.SideMenu_Chapters.Children.Add(plate);
                 }
                 foreach (Character character in _book.Characters)
@@ -96,7 +95,7 @@ namespace MayProject.Pages
                     plate.Margin = new Thickness(2);
                     plate.MaxWidth = 80;
                     plate.FontSize = 18;
-                    plate.Click -= (object sender, RoutedEventArgs e) => OpenElementPage(character);
+                    plate.Click += (object sender, RoutedEventArgs e) => OpenElementPage(character);
                     menu.SideMenu_Characters.Children.Add(plate);
                 }
                 foreach (Location location in _book.Locations)
@@ -105,19 +104,19 @@ namespace MayProject.Pages
                     plate.Margin = new Thickness(2);
                     plate.MaxWidth = 80;
                     plate.FontSize = 18;
-                    plate.Click -= (object sender, RoutedEventArgs e) => OpenElementPage(location);
+                    plate.Click += (object sender, RoutedEventArgs e) => OpenElementPage(location);
                     menu.SideMenu_Locations.Children.Add(plate);
                 }
                 Button relationsMap = new Button();
                 relationsMap.Content = "Relations Map";
-                relationsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                relationsMap.Background = new SolidColorBrush(Color.FromArgb(255, 236, 235, 231));
                 relationsMap.FontSize = 18;
                 relationsMap.Margin = new Thickness(2);
                 relationsMap.Click += (object sender, RoutedEventArgs e) =>
-                                       PageSwitcher.Switch(new RelationsMapPage(_book));
+                                      PageSwitcher.Switch(new RelationsMapPage(_book));
                 Button eventsMap = new Button();
                 eventsMap.Content = "Events Map";
-                eventsMap.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                eventsMap.Background = new SolidColorBrush(Color.FromArgb(255, 236, 235, 231));
                 eventsMap.FontSize = 18;
                 eventsMap.Margin = new Thickness(2);
                 eventsMap.Click += (object sender, RoutedEventArgs e) =>
@@ -128,9 +127,10 @@ namespace MayProject.Pages
                 foreach (Note note in _book.Notes)
                 {
                     Button plate = new Button();
-                    plate.Background = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                    plate.Background = new SolidColorBrush(Color.FromArgb(255, 236, 235, 231));
                     plate.Content = note.Title;
                     plate.FontSize = 18;
+                    plate.DataContext = note;
                     plate.Click += (object sender, RoutedEventArgs e) =>
                                     PageSwitcher.Switch(new NotePage(_book.Notes, note));
                     menu.SideMenu_Notes.Children.Add(plate);
@@ -234,7 +234,7 @@ namespace MayProject.Pages
             RowDefinition firstRow = new RowDefinition();
             firstRow.Height = new GridLength(0.7, GridUnitType.Star);
             RowDefinition secondRow = new RowDefinition();
-            secondRow.Height = GridLength.Auto; //new GridLength(0.3, GridUnitType.Star);
+            secondRow.Height = GridLength.Auto;
             grid.RowDefinitions.Add(firstRow);
             grid.RowDefinitions.Add(secondRow);
             Grid.SetRow(image, 0);
@@ -276,9 +276,9 @@ namespace MayProject.Pages
             else
             {
                 if (element is Character)
-                    img = Properties.Resources.avatar.ToBitmapImage();
+                    img = ((byte[])new System.Drawing.ImageConverter().ConvertTo(Properties.Resources.character, typeof(byte[]))).ToBitmapImage();
                 else if (element is Location)
-                    img = Properties.Resources.park.ToBitmapImage();
+                    img = ((byte[])new System.Drawing.ImageConverter().ConvertTo(Properties.Resources.location, typeof(byte[]))).ToBitmapImage();
                 else
                     img = Properties.Resources.defaultIllustration.ToBitmapImage();
             }
@@ -292,6 +292,8 @@ namespace MayProject.Pages
             illustration.Content = image;
 
             Label label = new Label();
+            label.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            label.FontSize = 25;
             label.VerticalAlignment = VerticalAlignment.Center;
             label.HorizontalAlignment = HorizontalAlignment.Left;
             label.Content = element.Title;

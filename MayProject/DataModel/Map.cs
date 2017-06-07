@@ -23,6 +23,5 @@ namespace MayProject.DataModel
         public XmlSerializableDictionary<string, Point> Coordinates { get; set; } = 
                                                 new XmlSerializableDictionary<string, Point>();
         public List<LinkInfo> Links { get; set; } = new List<LinkInfo>();
-        
     }
 }

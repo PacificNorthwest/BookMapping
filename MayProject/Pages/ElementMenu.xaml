@@ -61,7 +61,7 @@
                                                 </Viewbox>
                                                 <Button Name="ButtonDeleteElement" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete" Click="ButtonDeleteElement_Click"/>
                                                 <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration" Click="ButtonAddIllustration_Click"/>
-                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename" Click="ButtonRename_Click"/>
+                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </ContextMenu.Template>
@@ -75,7 +75,7 @@
     </UserControl.Resources>
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <WrapPanel Name="Container" Background="Gray"/>
+            <WrapPanel Name="Container" Background="#FFECEBE7"/>
         </ScrollViewer>
     </Grid>
 </UserControl>

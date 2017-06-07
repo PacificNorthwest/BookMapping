@@ -261,6 +261,15 @@
   <ItemGroup>
     <Resource Include="Resources\bond.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lagoon-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-14.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

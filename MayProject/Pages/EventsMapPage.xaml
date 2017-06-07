@@ -51,7 +51,7 @@
         </ContextMenu>
     </UserControl.Resources>
     <Grid>
-        <Canvas Name="Map" AllowDrop="True" Background="Transparent"/>
+        <Canvas Name="Map" AllowDrop="True" Background="#FFECEBE7"/>
         <Button Name="NewEventButton" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0, 10, 10" MaxWidth="80" Click="NewEventButton_Click">
             <Button.Content>
                 <Image Source="/MayProject;component/Resources/plus.png"/>

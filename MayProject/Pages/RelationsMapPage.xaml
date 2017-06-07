@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MayProject.Pages"
              xmlns:proj="clr-namespace:MayProject"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000" Background="Gray">
+             d:DesignHeight="600" d:DesignWidth="1000" Background="#FFECEBE7">
     <UserControl.Resources>
         <proj:BorderClipConverter x:Key="BorderClipConverter"/>
         <Style x:Key="PlainNode">

@@ -127,17 +127,11 @@ namespace MayProject.Pages
         {
             base.OnGiveFeedback(e);
             if (e.Effects.HasFlag(DragDropEffects.Copy))
-            {
                 Mouse.SetCursor(Cursors.Cross);
-            }
             else if (e.Effects.HasFlag(DragDropEffects.Move))
-            {
                 Mouse.SetCursor(Cursors.Pen);
-            }
             else
-            {
-                Mouse.SetCursor(Cursors.No);
-            }
+                Mouse.SetCursor(Cursors.No); 
             e.Handled = true;
         }
 
@@ -149,9 +143,9 @@ namespace MayProject.Pages
             else
             {
                 if (element is Character)
-                    img = Properties.Resources.avatar.ToBitmapImage();
+                    img = Properties.Resources.character.ToBitmapImage();
                 else if (element is Location)
-                    img = Properties.Resources.park.ToBitmapImage();
+                    img = Properties.Resources.location.ToBitmapImage();
                 else
                     img = Properties.Resources.defaultIllustration.ToBitmapImage();
             }
@@ -164,6 +158,8 @@ namespace MayProject.Pages
             illustration.Content = image;
 
             Label label = new Label();
+            label.Foreground = new SolidColorBrush(Colors.White);
+            label.FontSize = 25;
             label.VerticalAlignment = VerticalAlignment.Center;
             label.HorizontalAlignment = HorizontalAlignment.Left;
             label.Content = element.Title;
@@ -174,8 +170,6 @@ namespace MayProject.Pages
                 BorderThickness = new Thickness(0)
             };
             return CreateIllustrationGrid(illustration, label);
-
-            //return plate;
         }
 
         private Grid CreateIllustrationGrid(Button image, Label label)
@@ -233,9 +227,9 @@ namespace MayProject.Pages
             if (element.Illustrations.Count > 0)
                 img.Source = element.Illustrations[element.Illustrations.Count-1].ToBitmapImage();
             else if (element is Character)
-                img.Source = Properties.Resources.avatar.ToBitmapImage();
+                img.Source = ((byte[])new System.Drawing.ImageConverter().ConvertTo(Properties.Resources.character, typeof(byte[]))).ToBitmapImage();
             else
-                img.Source = Properties.Resources.park.ToBitmapImage();
+                img.Source = ((byte[])new System.Drawing.ImageConverter().ConvertTo(Properties.Resources.location, typeof(byte[]))).ToBitmapImage();
             Button plate = new Button();
             plate.Content = img;
             if (element is Character)

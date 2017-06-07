@@ -5,19 +5,20 @@
         xmlns:proj="clr-namespace:MayProject"
         Height="644" Width="1114.5" 
         WindowStyle="None" ResizeMode="CanResizeWithGrip" AllowsTransparency="True"
-        Background="Gray">
+        Background="#FFECEBE7">
     <Window.Resources>
         <proj:BorderClipConverter x:Key="BorderClipConverter"/>
         <Style x:Key="NewTabButton">
             <Setter Property = "Control.Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border CornerRadius="10, 10, 0, 0" BorderBrush="DarkGray" BorderThickness="1, 1, 1, 0" Background="DarkGray" Margin="5, 0, 0, 0">
+                        <Border CornerRadius="10, 10, 0, 0" BorderBrush="#AA152850" BorderThickness="1, 1, 1, 0" Background="#AA152850" Margin="5, 0, 0, 0">
                             <ContentPresenter VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+            <Setter Property="Control.Foreground" Value="White"/>
         </Style>
         <Style TargetType="{x:Type TabControl}">
             <Setter Property="OverridesDefaultStyle" Value="True" />
@@ -57,7 +58,7 @@
                                   Margin="2,0,4, 0" 
                                   IsItemsHost="True"
                                   KeyboardNavigation.TabIndex="1"
-                                  Background="Gray"
+                                  Background="Transparent"
                                   VerticalAlignment="Bottom"
                                   />
                             </Grid>
@@ -65,8 +66,8 @@
                             <Border Name="Border" 
                                 Grid.Row="1" 
                                 Background="Gray" 
-                                BorderBrush="DarkGray" 
-                                BorderThickness="1" 
+                                BorderBrush="#AA152850" 
+                                BorderThickness="0, 2, 0, 0" 
                                 CornerRadius="2"
                                 KeyboardNavigation.TabNavigation="Local"
                                 KeyboardNavigation.DirectionalNavigation="Contained"
@@ -88,8 +89,8 @@
                             <Border 
                                 Name="Border"
                                 Margin="0,0,-4,0" 
-                                Background="LightSlateGray"
-                                BorderBrush="DarkGray" 
+                                Background="#66152850"
+                                BorderBrush="#AA152850" 
                                 BorderThickness="1,1,1,1" 
                                 CornerRadius="2,8,0,0">
                                 <ContentPresenter x:Name="ContentSite"
@@ -103,7 +104,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Panel.ZIndex" Value="100" />
-                                <Setter TargetName="Border" Property="Background" Value="DarkGray" />
+                                <Setter TargetName="Border" Property="Background" Value="#AA152850" />
                                 <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -164,7 +165,7 @@
                                                 </Viewbox>
                                                 <Button Name="ButtonDeleteElement" Style="{StaticResource ContextMenuButton}" Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="X" DataContext="Delete" Click="ButtonDeleteElement_Click"/>
                                                 <Button Name="ButtonAddIllustration" Style="{StaticResource ContextMenuButton}" Grid.Column="1" Grid.Row="1" Content="+" DataContext="Add illustration" Click="ButtonAddIllustration_Click"/>
-                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename" Click="ButtonRename_Click"/>
+                                                <Button Name="ButtonRename" Style="{StaticResource ContextMenuButton}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Margin="0, 20, 0, 20" Content="/" DataContext="Rename"/>
                                             </Grid>
                                         </ControlTemplate>
                                     </ContextMenu.Template>
@@ -182,8 +183,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <DockPanel Name="TitleBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="DarkGray" MouseDown="TitleBar_MouseDown">
-            <Button Name="CloseButton" FontSize="15" Content="X" Background="DarkGray" HorizontalAlignment="Right" Width="27" BorderThickness="0" Click="CloseButton_Click"/>
+        <DockPanel Name="TitleBar" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="#FF152850" MouseDown="TitleBar_MouseDown">
+            <Button Name="CloseButton" FontSize="15" Content="X" Background="#FF152850" HorizontalAlignment="Right" Width="27" BorderThickness="0" Click="CloseButton_Click" Foreground="White"/>
         </DockPanel>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MayProject.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="500" Background="DarkGray" BorderThickness="0">
+             d:DesignHeight="400" d:DesignWidth="500" Background="#FFECEBE7" BorderThickness="0">
     <TabItem.Content>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -13,9 +13,9 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ScrollViewer Name="SideMenu" Grid.Column="0" Width="190" VerticalScrollBarVisibility="Auto" Visibility="Collapsed"/>
-            <Button Name="Button_Back" Grid.Column="1" Panel.ZIndex="100" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" MaxWidth="20" Click="Button_Back_Click">
+            <Button Name="Button_Back" Grid.Column="1" Panel.ZIndex="100" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="0" Background="Transparent" MaxWidth="25" Click="Button_Back_Click">
                 <Button.Content>
-                    <Image Source="/MayProject;component/Resources/back-arrow.png"/>
+                    <Image Source="/MayProject;component/Resources/back.png"/>
                 </Button.Content>
             </Button>
             <Grid Name="ContentPanel" Grid.Column="1"/>

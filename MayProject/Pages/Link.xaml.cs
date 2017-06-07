@@ -83,7 +83,7 @@ namespace MayProject.Pages
             {
                 Data = geometry,
                 StrokeThickness = 2,
-                Stroke = Brushes.White,
+                Stroke = Brushes.Black,
                 MinWidth = 1,
                 MinHeight = 1,
             });

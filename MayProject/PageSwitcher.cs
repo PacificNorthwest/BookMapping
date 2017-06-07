@@ -8,19 +8,29 @@ using MayProject.Contracts;
 
 namespace MayProject
 {
+    /// <summary>
+    /// Статический класс, управляющий навигацией между страницами
+    /// </summary>
     static class PageSwitcher
     {
-        public static MainWindow mainWindow { get; set; }
+        public static MainWindow MainWindow { get; set; }
 
+        /// <summary>
+        /// Переход на другую страницу приложения
+        /// </summary>
+        /// <param name="userControl">Страница для перехода</param>
         public static void Switch(UserControl userControl)
         {
             MainWindow.SelectedTab.History.Push(MainWindow.SelectedTab.CurrentPage);
-            mainWindow.Navigate(userControl);
+            MainWindow.Navigate(userControl);
         }
 
+        /// <summary>
+        /// Перемещение назад по истории страниц
+        /// </summary>
         public static void Back()
         {
-            mainWindow.Navigate(MainWindow.SelectedTab.History.Pop());
+            MainWindow.Navigate(MainWindow.SelectedTab.History.Pop());
             (MainWindow.SelectedTab.CurrentPage as ISideMenuHandler)?.PopulateSideMenu();
         }
     }

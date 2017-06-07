@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MayProject.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000" Background="Gray">
+             d:DesignHeight="600" d:DesignWidth="1000" Background="#FFECEBE7">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="67*"/>
@@ -18,9 +18,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Image Name="Illustration" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="10,40,0,10" Source="/MayProject;component/Resources/avatar.png"/>
-        <TextBox Name="CharacterName" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 20, 0, 0" Text="Character Name" Height="47" Width="250"/>
-        <TextBox Name="CharacterAge" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 80, 0, 0" Text="Age" Height="47" Width="250"/>
-        <TextBox Name="CharacterSex" Background="Gray" BorderThickness="0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 140, 0, 0" Text="Sex" Height="47" Width="250"/>
+        <TextBox Name="CharacterName" Background="#FFECEBE7" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 20, 0, 0" Text="Character Name" Height="47" Width="250"/>
+        <TextBox Name="CharacterAge" Background="#FFECEBE7" BorderThickness="0" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 80, 0, 0" Text="Age" Height="47" Width="250"/>
+        <TextBox Name="CharacterSex" Background="#FFECEBE7" BorderThickness="0" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="35" Foreground="Black" Margin="10, 140, 0, 0" Text="Sex" Height="47" Width="250"/>
         <TextBox Name="CharacterAppearence" Background="DarkGray" BorderThickness="0" Grid.Column="1" Grid.Row="1" FontSize="35" Foreground="Black" Margin="10" Text="Appearence"  />
         <TextBox Name="Description" Grid.Column="1" TextWrapping="Wrap" AcceptsReturn="True" Grid.Row="2" Grid.RowSpan="2" FontSize="25" Margin="10, 10, 10, 10" Background="DarkGray" Text="Description"/>
         <Button Name="SaveChanges" Background="Transparent" BorderThickness="0" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0, 0, 10, 10" MaxHeight="50" Click="SaveChanges_Click" Height="50" Width="50">
